@@ -1,106 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Gildas Web & Design</title>
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        header p {
+            font-size: 19px;
+            margin-bottom: 25px;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 14px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        section {
+            max-width: 1000px;
+            margin: 35px auto;
+            padding: 35px 25px;
+            background-color: white;
+            border-radius: 15px;
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 30px;
+        }
+
+        /* PHOTO DE GILDAS */
+
+        .profile {
+            text-align: center;
+        }
+
+        .profile img {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        .profile p {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        /* SERVICES */
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .service {
+            padding: 25px;
+            background-color: #f4f4f4;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .service h3 {
+            margin-bottom: 10px;
+        }
+
+        /* RÉALISATIONS */
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .project {
+            background-color: #f4f4f4;
+            border-radius: 12px;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .project img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project h3 {
+            margin-bottom: 10px;
+        }
+
+        /* LOGO */
+
+        .logo-section {
+            text-align: center;
+        }
+
+        .logo-section img {
+            width: 180px;
+            max-width: 100%;
+            margin-bottom: 15px;
+        }
+
+        /* CONTACT */
+
+        .contact {
+            text-align: center;
+        }
+
+        footer {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+        }
+
+        /* VERSION TÉLÉPHONE */
+
+        @media (max-width: 700px) {
+
+            header h1 {
+                font-size: 32px;
+            }
+
+            .services,
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                margin: 20px 12px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<header>
-    <h1>Gildas Web & Design</h1>
-    <p>Création de sites web et designs professionnels</p>
-</header>
+    <!-- ACCUEIL -->
 
-<nav>
-    <a href="#">Accueil</a>
-    <a href="#">Services</a>
-    <a href="#">Contact</a>
-</nav>
+    <header>
+        <h1>Gildas Web & Design</h1>
 
-<section>
-    <h2>Mes services</h2>
-    <p>✅ Création de sites web</p>
-    <p>✅ Affiches publicitaires</p>
-    <p>✅ Logos professionnels</p>
-</section>
+        <p>
+            Création de sites web modernes et design graphique professionnel.
+        </p>
 
-<button>Me contacter</button>
+        <a href="#services" class="button">
+            Découvrir mes services
+        </a>
+    </header>
+
+
+    <!-- À PROPOS -->
+
+    <section class="profile">
+
+        <h2>À propos de moi</h2>
+
+        <img src="moi.jpg" alt="photo.jpg">
+
+        <p>
+            Je suis Gildas, créateur de Gildas Web & Design.
+            Je suis passionné par la création de sites web et le design graphique.
+            Mon objectif est d'aider les particuliers, les entrepreneurs
+            et les entreprises à présenter leurs activités de manière
+            professionnelle sur Internet.
+        </p>
+
+    </section>
+
+
+    <!-- LOGO -->
+
+    <section class="logo-section">
+
+        <h2>Mon identité visuelle</h2>
+
+        <img src="Eno.jpg" alt="Logo Gildas Web & Design">
+
+        <p>
+            Voici mon identité visuelle et le logo de Gildas Web & Design.
+        </p>
+
+    </section>
+
+
+    <!-- SERVICES -->
+
+    <section id="services">
+
+        <h2>Mes services</h2>
+
+        <div class="services">
+
+            <div class="service">
+                <h3>🌐 Création de sites web</h3>
+                <p>
+                    Création de sites web modernes, simples et adaptés
+                    aux besoins de votre activité.
+                </p>
+            </div>
+
+            <div class="service">
+                <h3>🎨 Design graphique</h3>
+                <p>
+                    Création de designs professionnels pour présenter
+                    votre activité et votre marque.
+                </p>
+            </div>
+
+            <div class="service">
+                <h3>📢 Affiches publicitaires</h3>
+                <p>
+                    Création d'affiches attractives pour promouvoir
+                    vos produits, services et événements.
+                </p>
+            </div>
+
+            <div class="service">
+                <h3>💼 Création de logos</h3>
+                <p>
+                    Création de logos modernes et professionnels
+                    pour votre entreprise ou votre projet.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RÉALISATIONS -->
+
+    <section>
+
+        <h2>Mes réalisations</h2>
+
+        <div class="projects">
+
+            <div class="project">
+
+                <img src="site.jpg" alt="Exemple de site web">
+
+                <div class="project-content">
+                    <h3>Site web</h3>
+                    <p>
+                        Exemple de création web réalisée par Gildas Web & Design.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="project">
+
+                <img src="affiche1.jpg" alt="Affiche publicitaire">
+
+                <div class="project-content">
+                    <h3>Affiche publicitaire</h3>
+                    <p>
+                        Création d'une affiche publicitaire professionnelle.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="project">
+
+                <img src="logo.jpg" alt="Logo">
+
+                <div class="project-content">
+                    <h3>Logo</h3>
+                    <p>
+                        Création d'une identité visuelle pour une marque.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section class="contact">
+
+        <h2>Contact</h2>
+
+        <p>
+            Vous avez un projet ou besoin d'un design professionnel ?
+        </p>
+
+        <br>
+
+        <a href="https://wa.me/22952939571" class="button">
+            Me contacter sur WhatsApp
+        </a>
+
+    </section>
+
+
+    <!-- PIED DE PAGE -->
+
+    <footer>
+
+        <p>
+            © 2026 Gildas Web & Design — Tous droits réservés.
+        </p>
+
+    </footer>
 
 </body>
+
 </html>
-
-<style>body {
-    font-family: Arial;
-    text-align: center;
-    background-color: white;
-}
-
-h1 {
-    color: blue;
-}
-
-nav a {
-    margin: 10px;
-    text-decoration: none;
-}</style>
-<section>
-<img src="photo.jpg" alt="Gildas Web Design"></section>
-<style>img {
-    width: 300px;
-    border-radius: 20px;
-}</style>
-<section>
-    <h2>À propos de moi</h2>
-    <p>
-    Je suis Gildas, créateur de sites web et designer graphique.
-    J'aide les entreprises à améliorer leur image grâce aux sites web,
-    logos et affiches professionnelles.
-    </p>
-</section>
-
-  <style>section {
-    margin: 30px;
-    padding: 20px;
-}
-
-p {
-    font-size: 18px;
-}</style>
-<section><a href="https://wa.me/2290152939571" class="whatsapp">
-    Me contacter sur WhatsApp
-</a></section>
-<section>
-    <h2>Mes réalisations</h2>
-
-    <img src="affiche.jpg" alt="Affiche professionnelle">
-
-    <img src="logo.jpg" alt="Logo professionnel">
-
-    <img src="site.jpg" alt="Création de site web">
-</section>
-<style>.whatsapp {
-    display: inline-block;
-    padding: 15px 25px;
-    background-color: green;
-    color: white;
-    text-decoration: none;
-    border-radius: 10px;
-    font-size: 18px;
-}</style>
-<style>section img {
-    width: 250px;
-    margin: 10px;
-    border-radius: 15px;
-}</style>
-</body>
-<footer>
-    <p>© 2026 Gildas Web & Design - Tous droits réservés</p>
-    <p>WhatsApp : 0147021550</p>
-</footer>
-<style>footer {
-    background-color: black;
-    color: white;
-    padding: 20px;
-    margin-top: 30px;
-    text-align: center;
-}</style>
