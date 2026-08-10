@@ -1,388 +1,401 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gildas Web & Design | Boutique</title>
 
-    <title>Gildas Web & Design</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #172033;
+      line-height: 1.6;
+    }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #222;
-            line-height: 1.6;
-        }
-        
+    header {
+      background: #111827;
+      color: white;
+      padding: 18px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+    }
 
-        header {
-            background-color: #111;
-            color: white;
-            text-align: center;
-            padding: 60px 20px;
-        }
+    .nav {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        header h1 {
-            font-size: 42px;
-            margin-bottom: 15px;
-        }
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
 
-        header p {
-            font-size: 19px;
-            margin-bottom: 25px;
-        }
+    .logo span {
+      color: #00c853;
+    }
 
-        .button {
-            display: inline-block;
-            background-color: #25D366;
-            color: white;
-            padding: 14px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-        }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 15px;
+      font-size: 14px;
+    }
 
-        section {
-            max-width: 1000px;
-            margin: 35px auto;
-            padding: 35px 25px;
-            background-color: white;
-            border-radius: 15px;
-        }
+    nav a:hover {
+      color: #00c853;
+    }
 
-        section h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 30px;
-        }
+    .hero {
+      background: linear-gradient(135deg, #111827, #1f2937);
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
 
-        /* PHOTO DE GILDAS */
+    .hero h1 {
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
 
-        .profile {
-            text-align: center;
-        }
+    .hero h1 span {
+      color: #00c853;
+    }
 
-        .profile img {
-            width: 160px;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin-bottom: 20px;
-        }
+    .hero p {
+      max-width: 650px;
+      margin: 0 auto 25px;
+      color: #d1d5db;
+    }
 
-        .profile p {
-            max-width: 700px;
-            margin: auto;
-        }
+    .btn {
+      display: inline-block;
+      background: #00c853;
+      color: white;
+      padding: 13px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
 
-        /* SERVICES */
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
 
-        .services {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 60px 20px;
+    }
 
-        .service {
-            padding: 25px;
-            background-color: #f4f4f4;
-            border-radius: 12px;
-            text-align: center;
-        }
+    .title {
+      text-align: center;
+      margin-bottom: 35px;
+    }
 
-        .service h3 {
-            margin-bottom: 10px;
-        }
+    .title h2 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
 
-        /* RÉALISATIONS */
+    .title p {
+      color: #667085;
+    }
 
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
 
-        .project {
-            background-color: #f4f4f4;
-            border-radius: 12px;
-            overflow: hidden;
-            text-align: center;
-        }
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 25px 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: 0.3s;
+    }
 
-        .project img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
+    .card:hover {
+      transform: translateY(-5px);
+    }
 
-        .project-content {
-            padding: 20px;
-        }
+    .icon {
+      font-size: 45px;
+      margin-bottom: 15px;
+    }
 
-        .project h3 {
-            margin-bottom: 10px;
-        }
+    .card h3 {
+      margin-bottom: 10px;
+    }
 
-        /* LOGO */
+    .card p {
+      color: #667085;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
 
-        .logo-section {
-            text-align: center;
-        }
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 18px;
+      color: #111827;
+    }
 
-        .logo-section img {
-            width: 180px;
-            max-width: 100%;
-            margin-bottom: 15px;
-        }
+    .about {
+      background: white;
+      border-radius: 16px;
+      padding: 35px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+    }
 
-        /* CONTACT */
+    .contact {
+      text-align: center;
+    }
 
-        .contact {
-            text-align: center;
-        }
+    .contact p {
+      margin: 10px 0;
+    }
 
-        footer {
-            background-color: #111;
-            color: white;
-            text-align: center;
-            padding: 25px;
-            margin-top: 40px;
-        }
+    footer {
+      background: #111827;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 30px;
+    }
 
-        /* VERSION TÉLÉPHONE */
+    footer span {
+      color: #00c853;
+    }
 
-        @media (max-width: 700px) {
+    @media (max-width: 850px) {
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
 
-            header h1 {
-                font-size: 32px;
-            }
+    @media (max-width: 600px) {
+      .nav {
+        flex-direction: column;
+        gap: 12px;
+      }
 
-            .services,
-            .projects {
-                grid-template-columns: 1fr;
-            }
+      nav a {
+        margin: 0 5px;
+        font-size: 13px;
+      }
 
-            section {
-                margin: 20px 12px;
-            }
-        }
-    </style>
+      .hero {
+        padding: 60px 20px;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .about {
+        padding: 25px 18px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<body><div class="logo-menu">
-    
-</div>
 
-<div class="menu-links">
-    <a href="#accueil">Accueil</a>
-    <a href="#apropos">À propos</a>
-    <a href="#services">Services</a>
-    <a href="#realisations">Réalisations</a>
-    <a href="#contact">Contact</a>
-</div></body>
-<style>menu { background-color: #111; color: white; display: flex; justify-content: space-between; align-items: center; padding: 18px 30px; position: sticky; top: 0; z-index: 1000; }
-.logo-menu { font-size: 20px; font-weight: bold; }
-.menu-links { display: flex; gap: 20px; }
-.menu-links a { color: black; text-decoration: none; font-weight: bold; }
-.menu-links a:hover { color: #25D366; }
-@media (max-width: 700px) {
-.menu {
-    flex-direction: column;
-    gap: 15px;
-    text-align: center;
-}
+  <header>
+    <div class="nav">
+      <div class="logo">Gildas <span>Web & Design</span></div>
 
-.menu-links {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-}
+      <nav>
+        <a href="#accueil">Accueil</a>
+        <a href="#boutique">Boutique</a>
+        <a href="#apropos">À propos</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="accueil">
+    <h1>Bienvenue chez <span>Gildas Web & Design</span></h1>
+     <style>.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
 }</style>
-    <!-- ACCUEIL -->
+    <p>
+      Donnez une image professionnelle à votre activité grâce à nos services
+      de création graphique et de développement web.
+    </p>
 
-    <header>
-        <h1>Gildas Web & Design</h1>
+    <a href="#boutique" class="btn">🛒 Voir la boutique</a>
+  </section>
+
+  <section id="boutique">
+
+    <div class="title">
+      <h2>🛍️ Notre boutique</h2>
+      <p>Choisissez le service dont vous avez besoin.</p>
+    </div>
+
+    <div class="products">
+
+      <div class="card">
+        <img src="affiche1.jpg" alt="Affiche publicitaire">
+        <h3>Affiche publicitaire</h3>
 
         <p>
-            Création de sites web modernes et design graphique professionnel.
+          Une affiche professionnelle pour promouvoir votre activité,
+          produit ou événement.
         </p>
 
-        <a href="#services" class="button">
-            Découvrir mes services
+        <div class="price">À partir de 2 000 FCFA</div>
+
+        <a
+          class="btn"
+          href="https://wa.me/2290152939571?text=Bonjour%20Gildas%20Web%20%26%20Design%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20la%20cr%C3%A9ation%20d%27une%20affiche."
+          target="_blank">
+          Commander
         </a>
-    </header>
+      </div>
 
-
-    <!-- À PROPOS -->
-
-    <section class="profile">
-
-        <h2>À propos de moi</h2>
-
-        <img src="moi.jpg" alt="photo.jpg">
+      <div class="card">
+        <img src="site.jpg" alt="Création de site web">
+        <h3>Création de site web</h3>
 
         <p>
-            Je suis Gildas, créateur de Gildas Web & Design.
-            Je suis passionné par la création de sites web et le design graphique.
-            Mon objectif est d'aider les particuliers, les entrepreneurs
-            et les entreprises à présenter leurs activités de manière
-            professionnelle sur Internet.
+          Création d'un site web moderne, responsive et adapté
+          à votre activité.
         </p>
 
-    </section>
+        <div class="price">À partir de 15 000 FCFA</div>
 
-
-    <!-- LOGO -->
-
-    <section class="logo-section">
-
-        <h2>Mon identité visuelle</h2>
-
-        <img src="Eno.jpg" alt="Logo Gildas Web & Design">
-
-        <p>
-            Voici mon identité visuelle et le logo de Gildas Web & Design.
-        </p>
-
-    </section>
-
-
-    <!-- SERVICES -->
-
-    <section id="services">
-
-        <h2>Mes services</h2>
-
-        <div class="services">
-
-            <div class="service">
-                <h3>🌐 Création de sites web</h3>
-                <p>
-                    Création de sites web modernes, simples et adaptés
-                    aux besoins de votre activité.
-                </p>
-            </div>
-
-            <div class="service">
-                <h3>🎨 Design graphique</h3>
-                <p>
-                    Création de designs professionnels pour présenter
-                    votre activité et votre marque.
-                </p>
-            </div>
-
-            <div class="service">
-                <h3>📢 Affiches publicitaires</h3>
-                <p>
-                    Création d'affiches attractives pour promouvoir
-                    vos produits, services et événements.
-                </p>
-            </div>
-
-            <div class="service">
-                <h3>💼 Création de logos</h3>
-                <p>
-                    Création de logos modernes et professionnels
-                    pour votre entreprise ou votre projet.
-                </p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- RÉALISATIONS -->
-
-    <section>
-
-        <h2>Mes réalisations</h2>
-
-        <div class="projects">
-
-            <div class="project">
-
-                <img src="site.jpg" alt="Exemple de site web">
-
-                <div class="project-content">
-                    <h3>Site web</h3>
-                    <p>
-                        Exemple de création web réalisée par Gildas Web & Design.
-                    </p>
-                </div>
-
-            </div>
-
-
-            <div class="project">
-
-                <img src="affiche1.jpg" alt="Affiche publicitaire">
-
-                <div class="project-content">
-                    <h3>Affiche publicitaire</h3>
-                    <p>
-                        Création d'une affiche publicitaire professionnelle.
-                    </p>
-                </div>
-
-            </div>
-
-
-            <div class="project">
-
-                <img src="logo.jpg" alt="Logo">
-
-                <div class="project-content">
-                    <h3>Logo</h3>
-                    <p>
-                        Création d'une identité visuelle pour une marque.
-                    </p>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- CONTACT -->
-
-    <section class="contact">
-
-        <h2>Contact</h2>
-
-        <p>
-            Vous avez un projet ou besoin d'un design professionnel ?
-        </p>
-
-        <br>
-
-        <a href="https://wa.me/22952939571" class="button">
-            Me contacter sur WhatsApp
+        <a
+          class="btn"
+          href="https://wa.me/2290152939571?text=Bonjour%20Gildas%20Web%20%26%20Design%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20la%20cr%C3%A9ation%20d%27un%20site%20web."
+          target="_blank">
+          Commander
         </a>
+      </div>
 
-    </section>
+      <div class="card">
+        <img src="logo.jpg" alt="Logo Gildas Web & Design">
+        <h3>Création de logo</h3>
 
-
-    <!-- PIED DE PAGE -->
-
-    <footer>
-
-        <p>
-            © 2026 Gildas Web & Design — Tous droits réservés.
+        <p
+          Un logo unique et professionnel pour donner une identité
+          forte à votre marque.
         </p>
 
-    </footer>
+        <div class="price">À partir de 3 000 FCFA</div>
+
+        <a
+          class="btn"
+          href="https://wa.me/2290152939571?text=Bonjour%20Gildas%20Web%20%26%20Design%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20la%20cr%C3%A9ation%20d%27un%20logo."
+          target="_blank">
+          Commander
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="icon">✨</div>
+        <h3>Design graphique</h3>
+
+        <p>
+          Conception graphique personnalisée selon vos besoins
+          et votre image de marque.
+        </p>
+
+        <div class="price">Sur devis</div>
+
+        <a
+          class="btn"
+          href="https://wa.me/2290152939571?text=Bonjour%20Gildas%20Web%20%26%20Design%2C%20je%20souhaite%20un%20service%20de%20design%20graphique."
+          target="_blank">
+          Commander
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="apropos">
+
+    <div class="title">
+      <h2>À propos de nous</h2>
+    </div>
+
+    <div class="about">
+
+      <p>
+        <strong>Gildas Web & Design</strong> accompagne les particuliers,
+        entrepreneurs et petites entreprises dans leur communication
+        numérique.
+      </p>
+
+      <br>
+
+      <p>
+        Notre objectif : vous aider à présenter votre activité de manière
+        professionnelle sur Internet.
+      </p>
+
+    </div>
+
+  </section>
+
+  <section id="contact">
+
+    <div class="title">
+      <h2>📞 Contact</h2>
+      <p>Vous avez un projet ? Parlons-en.</p>
+    </div>
+
+    <div class="contact">
+
+      <p>📱 WhatsApp : <strong>+229 01 52 93 95 71</strong></p>
+      <p>📱 WhatsApp : <strong>+229 47 02 15 50</strong></p>
+
+      <br>
+
+      <a
+        class="btn"
+        href="https://wa.me/2290152939571?text=Bonjour%20Gildas%20Web%20%26%20Design%2C%20je%20souhaite%20parler%20de%20mon%20projet."
+        target="_blank">
+        💬 Nous contacter sur WhatsApp
+      </a>
+
+    </div>
+
+  </section>
+
+  <footer>
+    <p>
+      © 2026 <span>Gildas Web & Design</span> — Tous droits réservés.
+    </p>
+  </footer>
 
 </body>
-
 </html>
