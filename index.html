@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gildas Web & Design | Boutique</title>
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Gildas Web & Design</title>
 
   <style>
+
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
     }
 
     body {
       font-family: Arial, sans-serif;
-      background: #f5f7fb;
-      color: #172033;
+      background: #f7f8fa;
+      color: #222;
       line-height: 1.6;
     }
 
@@ -27,88 +32,84 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.15);
     }
 
-    .nav {
+    .header-container {
       max-width: 1100px;
       margin: auto;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      gap: 20px;
     }
 
-    .logo {
+    .logo-text {
       font-size: 20px;
       font-weight: bold;
     }
 
-    .logo span {
-      color: #00c853;
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
     }
 
     nav a {
       color: white;
       text-decoration: none;
-      margin-left: 15px;
-      font-size: 14px;
+      font-weight: 600;
     }
 
     nav a:hover {
-      color: #00c853;
+      opacity: 0.75;
+    }
+
+    section {
+      padding: 70px 20px;
     }
 
     .hero {
-      background: linear-gradient(135deg, #111827, #1f2937);
-      color: white;
+      background: white;
       text-align: center;
-      padding: 80px 20px;
+      padding: 90px 20px;
     }
 
     .hero h1 {
-      font-size: 38px;
-      margin-bottom: 15px;
-    }
-
-    .hero h1 span {
-      color: #00c853;
+      font-size: 42px;
+      margin-bottom: 20px;
     }
 
     .hero p {
-      max-width: 650px;
-      margin: 0 auto 25px;
-      color: #d1d5db;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      color: #667085;
+      font-size: 17px;
     }
 
     .btn {
       display: inline-block;
-      background: #00c853;
+      border: none;
+      border-radius: 10px;
+      padding: 13px 20px;
+      background: #111827;
       color: white;
-      padding: 13px 22px;
-      border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
-      transition: 0.3s;
+      cursor: pointer;
+      font-size: 15px;
     }
 
     .btn:hover {
-      transform: translateY(-2px);
       opacity: 0.9;
-    }
-
-    section {
-      max-width: 1100px;
-      margin: auto;
-      padding: 60px 20px;
     }
 
     .title {
       text-align: center;
-      margin-bottom: 35px;
+      margin-bottom: 40px;
     }
 
     .title h2 {
-      font-size: 30px;
+      font-size: 32px;
       margin-bottom: 8px;
     }
 
@@ -117,27 +118,31 @@
     }
 
     .products {
+      max-width: 1100px;
+      margin: auto;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
     }
 
     .card {
       background: white;
-      border-radius: 14px;
-      padding: 25px 20px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      border-radius: 18px;
+      padding: 25px;
       text-align: center;
-      transition: 0.3s;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .icon {
-      font-size: 45px;
-      margin-bottom: 15px;
+    .card img {
+      width: 100%;
+      max-width: 300px;
+      height: 190px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 18px;
     }
 
     .card h3 {
@@ -146,542 +151,760 @@
 
     .card p {
       color: #667085;
-      font-size: 14px;
-      margin-bottom: 18px;
+      margin-bottom: 15px;
     }
 
     .price {
-      font-size: 20px;
       font-weight: bold;
       margin-bottom: 18px;
-      color: #111827;
     }
 
-    .about {
+    .card .btn {
+      width: 100%;
+      max-width: 280px;
+    }
+
+    .icon {
+      font-size: 60px;
+      margin: 35px 0;
+    }
+
+    /* PANIER */
+
+    #panier-section {
       background: white;
-      border-radius: 16px;
-      padding: 35px;
-      text-align: center;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.06);
     }
 
-    .contact {
+    .panier-container {
+      max-width: 700px;
+      margin: auto;
+      background: #f7f8fa;
+      padding: 25px;
+      border-radius: 18px;
+    }
+
+    .ligne-panier {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      background: white;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+    }
+
+    .ligne-panier button {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .total-panier {
+      text-align: right;
+      font-size: 20px;
+      padding: 18px 0;
+    }
+
+    .finaliser {
+      width: 100%;
+      min-height: 52px;
+      font-size: 16px;
+    }
+
+    /* AVANTAGES */
+
+    #avantages {
+      background: #f7f8fa;
+    }
+
+    /* PAIEMENT */
+
+    #paiement {
+      background: white;
+    }
+
+    .paiement-container {
+      max-width: 750px;
+      margin: auto;
       text-align: center;
     }
 
-    .contact p {
-      margin: 10px 0;
+    .paiement-card,
+    .paiement-info {
+      background: #f7f8fa;
+      padding: 25px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    /* COMMANDE */
+
+    .commande-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      z-index: 9999;
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    .commande-box {
+      max-width: 550px;
+      margin: 30px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 18px;
+      position: relative;
+    }
+
+    .fermer-commande {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      border: none;
+      background: transparent;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    .commande-box h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .commande-intro {
+      text-align: center;
+      color: #667085;
+      margin-bottom: 25px;
+    }
+
+    .commande-resume {
+      background: #f7f8fa;
+      padding: 18px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .commande-total {
+      text-align: right;
+      font-size: 18px;
+      margin-top: 15px;
+      border-top: 1px solid #ddd;
+      padding-top: 12px;
+    }
+
+    .commande-box label {
+      display: block;
+      font-weight: bold;
+      margin: 15px 0 7px;
+    }
+
+    .commande-box input,
+    .commande-box textarea,
+    .commande-box select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d0d5dd;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    .paiement-info-commande {
+      background: #fff8df;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 18px 0;
+    }
+
+    .btn-commande {
+      width: 100%;
+      min-height: 52px;
+      margin-top: 10px;
     }
 
     footer {
       background: #111827;
       color: white;
       text-align: center;
-      padding: 25px 15px;
-      margin-top: 30px;
+      padding: 30px 20px;
     }
 
-    footer span {
-      color: #00c853;
-    }
+    @media (max-width: 700px) {
 
-    @media (max-width: 850px) {
-      .products {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 600px) {
-      .nav {
+      .header-container {
         flex-direction: column;
-        gap: 12px;
       }
 
-      nav a {
-        margin: 0 5px;
-        font-size: 13px;
-      }
-
-      .hero {
-        padding: 60px 20px;
+      nav {
+        justify-content: center;
       }
 
       .hero h1 {
-        font-size: 30px;
+        font-size: 32px;
       }
 
       .products {
         grid-template-columns: 1fr;
       }
 
-      .about {
-        padding: 25px 18px;
+      .ligne-panier {
+        align-items: flex-start;
       }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
-  <header>
-    <div class="nav">
-      <div class="logo">Gildas <span>Web & Design</span></div>
 
-      <nav>
-  <a href="#accueil">Accueil</a>
-  <a href="#boutique">Boutique</a>
-  <a href="#avantages">Pourquoi nous ?</a>
-  <a href="#apropos">À propos</a>
-  <a href="#paiement">Paiement</a>
-  <a href="#contact">Contact</a>
-</nav>
-    </div>
-  </header>
+<header>
 
-  <section class="hero" id="accueil">
-    <h1>Bienvenue chez <span>Gildas Web & Design</span></h1>
-     <style>.card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 15px;
-}</style>
-    <p>
-      Donnez une image professionnelle à votre activité grâce à nos services
-      de création graphique et de développement web.
-    </p>
+  <div class="header-container">
 
-    <a href="#boutique" class="btn">🛒 Voir la boutique</a>
-  </section>
-
-  <section id="boutique">
-
-    <div class="title">
-      <h2>🛍️ Notre boutique</h2>
-      <p>Choisissez le service dont vous avez besoin.</p>
+    <div class="logo-text">
+      Gildas Web & Design
     </div>
 
-    <div class="products">
+    <nav>
 
-      <div class="card">
-        <img src="affiche1.jpg" alt="Affiche publicitaire">
-        <h3>Affiche publicitaire</h3>
+      <a href="#accueil">Accueil</a>
 
-        <p>
-          Une affiche professionnelle pour promouvoir votre activité,
-          produit ou événement.
-        </p>
+      <a href="#boutique">Boutique</a>
 
-        <div class="price">À partir de 2 000 FCFA</div>
+      <a href="#avantages">Pourquoi nous ?</a>
 
-      <button class="btn" onclick="ajouterAuPanier('Affiche publicitaire', 2000)">
-  🛒 Ajouter au panier
-</button>
-        </a>
-      </div>
+      <a href="#panier-section">Panier</a>
 
-      <div class="card">
-        <img src="site.jpg" alt="Création de site web">
-        <h3>Création de site web</h3>
+      <a href="#paiement">Paiement</a>
 
-        <p>
-          Création d'un site web moderne, responsive et adapté
-          à votre activité.
-        </p>
+      <a href="#contact">Contact</a>
 
-        <div class="price">À partir de 15 000 FCFA</div>
+    </nav>
 
-        <a
-          class="btn"
-          href="https://wa.me/2290152939571?text=Bonjour%20Gildas%20Web%20%26%20Design%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20la%20cr%C3%A9ation%20d%27un%20site%20web."
-          target="_blank">
-          <button class="btn" onclick="ajouterAuPanier('Création de site web', 15000)">
-  🛒 Ajouter au panier
-</button>
-        </a>
-      </div>
+  </div>
 
-      <div class="card">
-        <img src="logo.jpg" alt="Logo Gildas Web & Design">
-        <h3>Création de logo</h3>
+</header>
 
-        <p
-          Un logo unique et professionnel pour donner une identité
-          forte à votre marque.
-        </p>
 
-        <div class="price">À partir de 3 000 FCFA</div>
+<!-- ACCUEIL -->
 
-        <a
-          class="btn"
-          href="https://wa.me/2290152939571?text=Bonjour%20Gildas%20Web%20%26%20Design%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20la%20cr%C3%A9ation%20d%27un%20logo."
-          target="_blank">
-          <button class="btn" onclick="ajouterAuPanier('Création de logo', 3000)">
-  🛒 Ajouter au panier
-</button>
-        </a>
-      </div>
+<section id="accueil" class="hero">
 
-      <div class="card">
-        <div class="icon">✨</div>
-        <h3>Design graphique</h3>
+  <h1>
+    Gildas Web & Design
+  </h1>
 
-        <p>
-          Conception graphique personnalisée selon vos besoins
-          et votre image de marque.
-        </p>
+  <p>
+    Donnez une image professionnelle à votre activité grâce
+    à nos services de création graphique et de développement web.
+  </p>
 
-        <div class="price">Sur devis</div>
+  <a class="btn" href="#boutique">
+    🛒 Voir la boutique
+  </a>
 
-        <a
-          class="btn"
-          href="https://wa.me/2290152939571?text=Bonjour%20Gildas%20Web%20%26%20Design%2C%20je%20souhaite%20un%20service%20de%20design%20graphique."
-          target="_blank">
-          <button class="btn" onclick="ajouterAuPanier('Design graphique', 0)">
-  🛒 Ajouter au panier
-</button>
-        </a>
-      </div>
-<button class="btn" onclick="ouvrirCommande()">
-  🛒 Finaliser ma commande
-</button>
-    </div>
-  </section>
+</section>
 
-  <section id="apropos">
 
-    <div class="title">
-      <section id="avantages">
+<!-- BOUTIQUE -->
+
+<section id="boutique">
 
   <div class="title">
-    <h2>⭐ Pourquoi choisir Gildas Web & Design ?</h2>
-    <p>Nous mettons notre créativité au service de vos projets.</p>
+
+    <h2>
+      🛍️ Notre boutique
+    </h2>
+
+    <p>
+      Choisissez le service dont vous avez besoin.
+    </p>
+
+  </div>
+
+
+  <div class="products">
+
+
+    <!-- AFFICHE -->
+
+    <div class="card">
+
+      <img
+        src="affiche1.jpg"
+        alt="Affiche publicitaire">
+
+      <h3>
+        Affiche publicitaire
+      </h3>
+
+      <p>
+        Une affiche professionnelle pour promouvoir
+        votre activité, produit ou événement.
+      </p>
+
+      <div class="price">
+        À partir de 2 000 FCFA
+      </div>
+
+      <button
+        class="btn"
+        type="button"
+        onclick="ajouterAuPanier('Affiche publicitaire', 2000)">
+
+        🛒 Ajouter au panier
+
+      </button>
+
+    </div>
+
+
+    <!-- SITE WEB -->
+
+    <div class="card">
+
+      <img
+        src="site.jpg"
+        alt="Création de site web">
+
+      <h3>
+        Création de site web
+      </h3>
+
+      <p>
+        Création d'un site web moderne,
+        responsive et adapté à votre activité.
+      </p>
+
+      <div class="price">
+        À partir de 15 000 FCFA
+      </div>
+
+      <button
+        class="btn"
+        type="button"
+        onclick="ajouterAuPanier('Création de site web', 15000)">
+
+        🛒 Ajouter au panier
+
+      </button>
+
+    </div>
+
+
+    <!-- LOGO -->
+
+    <div class="card">
+
+      <img
+        src="logo.jpg"
+        alt="Logo Gildas Web & Design">
+
+      <h3>
+        Création de logo
+      </h3>
+
+      <p>
+        Un logo unique et professionnel pour donner
+        une identité forte à votre marque.
+      </p>
+
+      <div class="price">
+        À partir de 3 000 FCFA
+      </div>
+
+      <button
+        class="btn"
+        type="button"
+        onclick="ajouterAuPanier('Création de logo', 3000)">
+
+        🛒 Ajouter au panier
+
+      </button>
+
+    </div>
+
+
+    <!-- DESIGN -->
+
+    <div class="card">
+
+      <div class="icon">
+        ✨
+      </div>
+
+      <h3>
+        Design graphique
+      </h3>
+
+      <p>
+        Conception graphique personnalisée selon
+        vos besoins et votre image de marque.
+      </p>
+
+      <div class="price">
+        Sur devis
+      </div>
+
+      <button
+        class="btn"
+        type="button"
+        onclick="ajouterAuPanier('Design graphique', 0)">
+
+        🛒 Ajouter au panier
+
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- AVANTAGES -->
+
+<section id="avantages">
+
+  <div class="title">
+
+    <h2>
+      ⭐ Pourquoi choisir Gildas Web & Design ?
+    </h2>
+
+    <p>
+      Nous mettons notre créativité au service de vos projets.
+    </p>
+
   </div>
 
   <div class="products">
 
     <div class="card">
-      <div class="icon">🎯</div>
-      <h3>Travail personnalisé</h3>
+
+      <div class="icon">
+        🎯
+      </div>
+
+      <h3>
+        Travail personnalisé
+      </h3>
+
       <p>
-        Chaque projet est conçu selon vos besoins, votre activité
-        et votre identité.
+        Chaque projet est conçu selon vos besoins,
+        votre activité et votre identité.
       </p>
+
     </div>
 
-    <div class="card">
-      <div class="icon">💎</div>
-      <h3>Design professionnel</h3>
-      <p>
-        Nous créons des visuels modernes et adaptés à votre image
-        pour vous aider à vous démarquer.
-      </p>
-    </div>
 
     <div class="card">
-      <div class="icon">⚡</div>
-      <h3>Service rapide</h3>
+
+      <div class="icon">
+        💎
+      </div>
+
+      <h3>
+        Design professionnel
+      </h3>
+
       <p>
-        Nous travaillons avec sérieux pour vous livrer votre projet
-        dans les meilleurs délais.
+        Des visuels modernes adaptés à votre image.
       </p>
+
     </div>
 
+
     <div class="card">
-      <div class="icon">📱</div>
-      <h3>Accompagnement</h3>
+
+      <div class="icon">
+        ⚡
+      </div>
+
+      <h3>
+        Service rapide
+      </h3>
+
       <p>
-        Vous pouvez nous contacter facilement sur WhatsApp pour
-        discuter de votre projet.
+        Nous travaillons avec sérieux et efficacité.
       </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">
+        📱
+      </div>
+
+      <h3>
+        Accompagnement
+      </h3>
+
+      <p>
+        Contact facile par WhatsApp pour discuter de votre projet.
+      </p>
+
     </div>
 
   </div>
 
 </section>
-      <h2>À propos de nous</h2>
-    </div>
 
-    <div class="about">
+
+<!-- PANIER -->
+
+<section id="panier-section">
+
+  <div class="title">
+
+    <h2>
+      🛒 Mon panier
+    </h2>
+
+    <p>
+      Vérifiez vos services avant de passer commande.
+    </p>
+
+  </div>
+
+
+  <div class="panier-container">
+
+    <div id="panier">
 
       <p>
-        <strong>Gildas Web & Design</strong> accompagne les particuliers,
-        entrepreneurs et petites entreprises dans leur communication
-        numérique.
-      </p>
-
-      <br>
-
-      <p>
-        Notre objectif : vous aider à présenter votre activité de manière
-        professionnelle sur Internet.
+        Votre panier est vide.
       </p>
 
     </div>
 
-  </section>
 
-  <section id="contact">
+    <button
+      class="btn finaliser"
+      type="button"
+      onclick="ouvrirCommande()">
 
-    <div class="title">
-      <h2>📞 Contact</h2>
-      <p>Vous avez un projet ? Parlons-en.</p>
-    </div>
+      🛒 Finaliser ma commande
 
-    <div class="contact">
+    </button>
 
-      <p>📱 WhatsApp : <strong>+229 01 52 93 95 71</strong></p>
-      <p>📱 WhatsApp : <strong>+229 47 02 15 50</strong></p>
+  </div>
 
-      <br>
+</section>
 
-      <a
-        class="btn"
-        href="https://wa.me/2290152939571?text=Bonjour%20Gildas%20Web%20%26%20Design%2C%20je%20souhaite%20parler%20de%20mon%20projet."
-        target="_blank">
-        💬 Nous contacter sur WhatsApp
-      </a>
 
-    </div>
+<!-- PAIEMENT -->
 
-  </section>
-
-  
-  <!-- ============================= -->
-<!-- SECTION PAIEMENT -->
-<!-- ============================= -->
-
-<section id="paiement" class="section-paiement">
+<section id="paiement">
 
   <div class="paiement-container">
 
-    <div class="paiement-icon">💳</div>
+    <div class="title">
 
-    <h2>Paiement</h2>
+      <h2>
+        💳 Paiement
+      </h2>
 
-    <p class="paiement-description">
-      Choisissez votre moyen de paiement pour régler votre commande
-      simplement et en toute sécurité.
-    </p>
-
-    <div class="paiement-card">
-
-      <div class="paiement-logo">
-        💛
-      </div>
-
-      <div class="paiement-content">
-
-        <h3>MTN Mobile Money</h3>
-
-        <p>
-          Le paiement peut être effectué par Mobile Money.
-        </p>
-
-        <span class="paiement-status">
-          ✓ Disponible
-        </span>
-
-      </div>
+      <p>
+        Choisissez un moyen de paiement pour régler votre commande.
+      </p>
 
     </div>
 
+
+    <div class="paiement-card">
+
+      <h3>
+        💛 MTN Mobile Money
+      </h3>
+
+      <p>
+        Le paiement peut être effectué par Mobile Money.
+        Les instructions vous seront communiquées après confirmation
+        de votre commande.
+      </p>
+
+    </div>
+
+
     <div class="paiement-info">
 
-      <h3>📌 Comment ça fonctionne ?</h3>
+      <h3>
+        📌 Comment ça fonctionne ?
+      </h3>
 
       <ol>
-        <li>Choisissez votre service.</li>
-        <li>Finalisez votre commande.</li>
-        <li>Nous vous communiquons les instructions de paiement.</li>
-        <li>Après confirmation du paiement, votre projet est traité.</li>
+
+        <li>
+          Choisissez votre service.
+        </li>
+
+        <li>
+          Ajoutez-le au panier.
+        </li>
+
+        <li>
+          Finalisez votre commande.
+        </li>
+
+        <li>
+          Nous vous communiquons les instructions de paiement.
+        </li>
+
       </ol>
 
     </div>
 
-    <div class="paiement-securite">
-      🔒 Vos informations sont traitées avec confidentialité.
-    </div>
+  </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+  <div class="title">
+
+    <h2>
+      📞 Contact
+    </h2>
+
+    <p>
+      Une question ou un projet ? Contactez-nous directement.
+    </p>
+
+  </div>
+
+  <div style="text-align:center;">
+
+    <a
+      class="btn"
+      href="https://wa.me/2290152939571"
+      target="_blank">
+
+      📲 Nous contacter sur WhatsApp
+
+    </a>
 
   </div>
 
 </section>
-  <footer>
-    <p>
-      © 2026 <span>Gildas Web & Design</span> — Tous droits réservés.
-    </p>
-  </footer>
 
-<style>
 
-.section-paiement {
-  padding: 70px 20px;
-  background: #f7f8fa;
-}
+<!-- COMMANDE -->
 
-.paiement-container {
-  max-width: 800px;
-  margin: auto;
-  text-align: center;
-}
+<div
+  id="commandeModal"
+  class="commande-modal">
 
-.paiement-icon {
-  font-size: 45px;
-  margin-bottom: 10px;
-}
-
-.paiement-container h2 {
-  font-size: 32px;
-  margin-bottom: 10px;
-}
-
-.paiement-description {
-  color: #667085;
-  max-width: 600px;
-  margin: 0 auto 35px;
-}
-
-.paiement-card {
-  background: white;
-  border-radius: 18px;
-  padding: 25px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  text-align: left;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-  margin-bottom: 25px;
-}
-
-.paiement-logo {
-  width: 65px;
-  height: 65px;
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-  background: #fff3b0;
-}
-
-.paiement-content h3 {
-  margin: 0 0 6px;
-}
-
-.paiement-content p {
-  margin: 0 0 8px;
-  color: #667085;
-}
-
-.paiement-status {
-  color: #087f23;
-  font-weight: bold;
-}
-
-.paiement-info {
-  background: white;
-  border-radius: 18px;
-  padding: 25px;
-  text-align: left;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-}
-
-.paiement-info h3 {
-  margin-top: 0;
-}
-
-.paiement-info li {
-  margin: 12px 0;
-}
-
-.paiement-securite {
-  margin-top: 25px;
-  color: #667085;
-  font-size: 14px;
-}
-
-@media (max-width: 600px) {
-
-  .paiement-card {
-    align-items: flex-start;
-  }
-
-  .paiement-container h2 {
-    font-size: 27px;
-  }
-
-}
-
-</style>
-</body>
-</html>
-<!-- ============================= -->
-<!-- FORMULAIRE DE COMMANDE -->
-<!-- ============================= -->
-
-<div id="commandeModal" class="commande-modal">
 
   <div class="commande-box">
 
-    <button class="fermer-commande" onclick="fermerCommande()">×</button>
 
-    <h2>🛒 Finaliser ma commande</h2>
+    <button
+      class="fermer-commande"
+      type="button"
+      onclick="fermerCommande()">
+
+      ×
+
+    </button>
+
+
+    <h2>
+      🛒 Finaliser ma commande
+    </h2>
+
 
     <p class="commande-intro">
-      Merci pour votre confiance. Remplissez les informations
-      ci-dessous pour envoyer votre demande.
+
+      Remplissez les informations ci-dessous
+      pour envoyer votre demande.
+
     </p>
+
 
     <div class="commande-resume">
 
-      <h3>🧾 Votre commande</h3>
+      <h3>
+        🧾 Votre commande
+      </h3>
 
       <div id="resumePanier">
+
         Aucun service sélectionné.
+
       </div>
 
       <div class="commande-total">
-        Total : <strong id="commandeTotal">0 FCFA</strong>
+
+        Total :
+        <strong id="commandeTotal">
+          0 FCFA
+        </strong>
+
       </div>
 
     </div>
 
+
     <form id="formCommande">
 
-      <label for="nomClient">👤 Nom complet</label>
+
+      <label for="nomClient">
+        👤 Nom complet
+      </label>
 
       <input
-        type="text"
         id="nomClient"
-        placeholder="Ex : Gildas Kehoumbou"
-        required
-      >
+        type="text"
+        placeholder="Votre nom"
+        required>
 
-      <label for="telephoneClient">📱 Numéro WhatsApp</label>
+
+      <label for="telephoneClient">
+        📱 Numéro WhatsApp
+      </label>
 
       <input
-        type="tel"
         id="telephoneClient"
-        placeholder="Ex : 0152939571"
-        required
-      >
+        type="tel"
+        placeholder="Votre numéro"
+        required>
 
-      <label for="projetClient">📝 Détails de votre projet</label>
+
+      <label for="projetClient">
+        📝 Détails du projet
+      </label>
 
       <textarea
         id="projetClient"
         rows="4"
-        placeholder="Décrivez brièvement ce que vous souhaitez..."
-        required
-      ></textarea>
+        placeholder="Décrivez votre projet..."
+        required></textarea>
 
-      <label for="paiementClient">💳 Moyen de paiement</label>
 
-      <select id="paiementClient" required>
+      <label for="paiementClient">
+        💳 Moyen de paiement
+      </label>
+
+      <select
+        id="paiementClient"
+        required>
 
         <option value="">
-          -- Choisissez un moyen de paiement --
+          -- Choisissez --
         </option>
 
         <option value="MTN Mobile Money">
@@ -689,26 +912,34 @@
         </option>
 
         <option value="À confirmer">
-          À confirmer avec Gildas Web & Design
+          À confirmer
         </option>
 
       </select>
 
-      <div class="paiement-info">
 
-        <strong>💛 MTN Mobile Money</strong>
+      <div class="paiement-info-commande">
+
+        <strong>
+          💛 MTN Mobile Money
+        </strong>
 
         <p>
-          Après confirmation de votre commande,
-          nous vous communiquerons les instructions
-          de paiement.
+          Les instructions de paiement seront communiquées
+          après réception de la commande.
         </p>
 
       </div>
 
-      <button type="submit" class="btn btn-commande">
+
+      <button
+        class="btn btn-commande"
+        type="submit">
+
         📲 Confirmer la commande sur WhatsApp
+
       </button>
+
 
     </form>
 
@@ -717,396 +948,884 @@
 </div>
 
 
-<!-- ============================= -->
-<!-- STYLE DU FORMULAIRE -->
-<!-- ============================= -->
+<!-- FOOTER -->
 
-<style>
+<footer>
 
-.commande-modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.65);
-  z-index: 9999;
-  overflow-y: auto;
-  padding: 25px 15px;
+  © 2026 Gildas Web & Design
+
+</footer>
+
+
+<script>
+
+// ==========================================
+// PANIER
+// ==========================================
+
+let panier = [];
+
+
+// Ajouter au panier
+function ajouterAuPanier(nom, prix) {
+
+  const existant =
+    panier.find(
+      produit => produit.nom === nom
+    );
+
+
+  if (existant) {
+
+    existant.quantite++;
+
+  } else {
+
+    panier.push({
+
+      nom: nom,
+
+      prix: Number(prix),
+
+      quantite: 1
+
+    });
+
+  }
+
+
+  afficherPanier();
+
 }
+
+
+// Afficher panier
+function afficherPanier() {
+
+  const element =
+    document.getElementById("panier");
+
+
+  if (!element) return;
+
+
+  if (panier.length === 0) {
+
+    element.innerHTML =
+      "<p>Votre panier est vide.</p>";
+
+    return;
+
+  }
+
+
+  let html = "";
+
+  let total = 0;
+
+
+  panier.forEach(
+    function(produit, index) {
+
+
+      const sousTotal =
+        produit.prix *
+        produit.quantite;
+
+
+      total += sousTotal;
+
+
+      html += `
+
+        <div class="ligne-panier">
+
+          <div>
+
+            <strong>
+              ${produit.nom}
+            </strong>
+
+            <br>
+
+            ${produit.prix.toLocaleString("fr-FR")}
+            FCFA ×
+            ${produit.quantite}
+
+          </div>
+
+
+          <button
+            type="button"
+            onclick="supprimerDuPanier(${index})">
+
+            ❌
+
+          </button>
+
+        </div>
+
+      `;
+
+    }
+  );
+
+
+  html += `
+
+    <div class="total-panier">
+
+      <strong>
+        Total :
+        ${total.toLocaleString("fr-FR")}
+        FCFA
+      </strong>
+
+    </div>
+
+  `;
+
+
+  element.innerHTML = html;
+
+}
+
+
+// Supprimer
+function supprimerDuPanier(index) {
+
+  panier.splice(index, 1);
+
+  afficherPanier();
+
+}
+
+
+// Ouvrir commande
+function ouvrirCommande() {
+
+
+  if (panier.length === 0) {
+
+    alert(
+      "🛒 Votre panier est vide."
+    );
+
+    return;
+
+  }
+
+
+  afficherResumeCommande();
+
+
+  document.getElementById(
+    "commandeModal"
+  ).style.display = "block";
+
+
+  document.body.style.overflow =
+    "hidden";
+
+}
+
+
+// Fermer commande
+function fermerCommande() {
+
+  document.getElementById(
+    "commandeModal"
+  ).style.display = "none";
+
+
+  document.body.style.overflow =
+    "auto";
+
+}
+
+
+// Résumé commande
+function afficherResumeCommande() {
+
+  const resume =
+    document.getElementById(
+      "resumePanier"
+    );
+
+
+  const totalElement =
+    document.getElementById(
+      "commandeTotal"
+    );
+
+
+  let html = "";
+
+  let total = 0;
+
+
+  panier.forEach(
+    function(produit) {
+
+
+      const sousTotal =
+        produit.prix *
+        produit.quantite;
+
+
+      total += sousTotal;
+
+
+      html += `
+
+        <div style="margin-bottom:8px;">
+
+          • ${produit.nom}
+          × ${produit.quantite}
+          —
+          ${sousTotal.toLocaleString("fr-FR")}
+          FCFA
+
+        </div>
+
+      `;
+
+    }
+  );
+
+
+  resume.innerHTML = html;
+
+
+  totalElement.textContent =
+    total.toLocaleString("fr-FR")
+    + " FCFA";
+
+}
+
+
+// ==========================================
+// ENVOI WHATSAPP
+// ==========================================
+
+document
+  .getElementById("formCommande")
+  .addEventListener(
+    "submit",
+    function(event) {
+
+
+      event.preventDefault();
+
+
+      const nom =
+        document
+          .getElementById("nomClient")
+          .value
+          .trim();
+
+
+      const telephone =
+        document
+          .getElementById("telephoneClient")
+          .value
+          .trim();
+
+
+      const projet =
+        document
+          .getElementById("projetClient")
+          .value
+          .trim();
+
+
+      const paiement =
+        document
+          .getElementById("paiementClient")
+          .value;
+
+
+      let commande = "";
+
+
+      let total = 0;
+
+
+      panier.forEach(
+        function(produit) {
+
+
+          const sousTotal =
+            produit.prix *
+            produit.quantite;
+
+
+          total += sousTotal;
+
+
+          commande +=
+            "• " +
+            produit.nom +
+            " × " +
+            produit.quantite +
+            " — " +
+            sousTotal.toLocaleString("fr-FR") +
+            " FCFA\n";
+
+        }
+      );
+
+
+      const message =
+
+        "🛒 NOUVELLE COMMANDE\n\n" +
+
+        "👤 Client : " +
+        nom +
+        "\n" +
+
+        "📱 WhatsApp : " +
+        telephone +
+        "\n\n" +
+
+        "📦 Commande :\n" +
+
+        commande +
+
+        "\n💰 Total : " +
+        total.toLocaleString("fr-FR") +
+        " FCFA\n\n" +
+
+        "💳 Paiement : " +
+        paiement +
+        "\n\n" +
+
+        "📝 Projet :\n" +
+        projet;
+
+
+      const url =
+
+        "https://wa.me/2290152939571?text=" +
+
+        encodeURIComponent(message);
+
+
+      window.open(
+        url,
+        "_blank"
+      );
+
+    }
+  );
+
+
+// Fermer la fenêtre en cliquant dehors
+window.addEventListener(
+  "click",
+  function(event) {
+
+
+    const modal =
+      document.getElementById(
+        "commandeModal"
+      );
+
+
+    if (
+      event.target === modal
+    ) {
+
+      fermerCommande();
+
+    }
+
+  }
+);
+
+
+// Initialisation
+afficherPanier();
+
+</script>
+
+
+</body>
+
+</html>
+<style>/* =========================================
+   🎨 DESIGN PREMIUM - GILDAS WEB & DESIGN
+   ========================================= */
+
+:root {
+  --primary: #6c5ce7;
+  --secondary: #00b894;
+  --accent: #fdcb6e;
+  --dark: #17202a;
+  --light: #f8f9ff;
+  --white: #ffffff;
+  --text: #343a40;
+  --muted: #6c757d;
+  --shadow: 0 12px 35px rgba(0, 0, 0, 0.10);
+  --radius: 20px;
+}
+
+
+/* 🌈 PAGE */
+
+body {
+  background:
+    linear-gradient(
+      135deg,
+      #f8f9ff 0%,
+      #eef7ff 50%,
+      #fff8ed 100%
+    );
+
+  color: var(--text);
+}
+
+
+/* 🧭 MENU */
+
+header {
+  background:
+    linear-gradient(
+      135deg,
+      #17132f,
+      #302b63,
+      #6c5ce7
+    );
+
+  box-shadow:
+    0 5px 25px rgba(0,0,0,0.18);
+}
+
+nav a {
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  background: rgba(255,255,255,0.18);
+  transform: translateY(-2px);
+}
+
+
+/* 🏠 ACCUEIL */
+
+.hero {
+  background:
+    radial-gradient(
+      circle at top right,
+      #dfe6ff,
+      transparent 45%
+    ),
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #f2f0ff
+    );
+
+  border-bottom:
+    1px solid rgba(108,92,231,0.15);
+}
+
+.hero h1 {
+  background:
+    linear-gradient(
+      90deg,
+      #6c5ce7,
+      #00b894
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+
+/* 🔘 BOUTONS */
+
+.btn {
+  background:
+    linear-gradient(
+      135deg,
+      #6c5ce7,
+      #4834d4
+    );
+
+  box-shadow:
+    0 8px 20px rgba(108,92,231,0.25);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 12px 28px rgba(108,92,231,0.35);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+
+/* 🛍️ TITRES */
+
+.title h2 {
+  color: #2d3436;
+}
+
+.title h2::after {
+  content: "";
+  display: block;
+
+  width: 65px;
+  height: 4px;
+
+  margin: 12px auto 0;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #6c5ce7,
+      #00b894
+    );
+}
+
+
+/* 🛒 CARTES PRODUITS */
+
+.card {
+  position: relative;
+
+  overflow: hidden;
+
+  border:
+    1px solid rgba(108,92,231,0.08);
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #fbfbff
+    );
+
+  box-shadow:
+    0 10px 30px rgba(31,41,55,0.08);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 5px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #6c5ce7,
+      #00b894,
+      #fdcb6e
+    );
+}
+
+.card:hover {
+  transform:
+    translateY(-8px);
+
+  box-shadow:
+    0 18px 45px rgba(31,41,55,0.14);
+
+  border-color:
+    rgba(108,92,231,0.25);
+}
+
+
+/* 🖼️ IMAGES */
+
+.card img {
+  border:
+    3px solid #f0edff;
+
+  box-shadow:
+    0 8px 20px rgba(108,92,231,0.10);
+
+  transition:
+    transform 0.3s ease;
+}
+
+.card:hover img {
+  transform:
+    scale(1.03);
+}
+
+
+/* ✨ DESIGN GRAPHIQUE */
+
+.icon {
+  width: 90px;
+  height: 90px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eeeaff,
+      #e1fff8
+    );
+
+  box-shadow:
+    0 10px 25px rgba(108,92,231,0.12);
+}
+
+
+/* 💰 PRIX */
+
+.price {
+  color: #6c5ce7;
+
+  background:
+    #f0edff;
+
+  padding:
+    7px 14px;
+
+  border-radius:
+    50px;
+
+  display:
+    inline-block;
+}
+
+
+/* 🛒 PANIER */
+
+#panier-section {
+  background:
+    linear-gradient(
+      135deg,
+      #f0edff,
+      #e8fff9
+    );
+}
+
+.panier-container {
+  background:
+    rgba(255,255,255,0.90);
+
+  border:
+    1px solid rgba(108,92,231,0.12);
+
+  box-shadow:
+    var(--shadow);
+}
+
+
+/* 📦 LIGNES DU PANIER */
+
+.ligne-panier {
+  border-left:
+    5px solid #6c5ce7;
+
+  box-shadow:
+    0 4px 15px rgba(0,0,0,0.05);
+
+  transition:
+    transform 0.2s ease;
+}
+
+.ligne-panier:hover {
+  transform:
+    translateX(4px);
+}
+
+
+/* 💰 TOTAL */
+
+.total-panier {
+  color:
+    #302b63;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f0edff,
+      #e7fff9
+    );
+
+  border-radius:
+    12px;
+
+  padding:
+    15px;
+}
+
+
+/* 🛍️ FINALISER */
+
+.finaliser {
+  background:
+    linear-gradient(
+      135deg,
+      #00b894,
+      #00a383
+    );
+
+  box-shadow:
+    0 10px 25px rgba(0,184,148,0.25);
+}
+
+.finaliser:hover {
+  box-shadow:
+    0 14px 30px rgba(0,184,148,0.35);
+}
+
+
+/* 💳 PAIEMENT */
+
+#paiement {
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #f4faff
+    );
+}
+
+.paiement-card {
+  border-left:
+    6px solid #00b894;
+
+  background:
+    linear-gradient(
+      135deg,
+      #edfff9,
+      #ffffff
+    );
+
+  box-shadow:
+    var(--shadow);
+}
+
+.paiement-info {
+  border-left:
+    6px solid #fdcb6e;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff9e8,
+      #ffffff
+    );
+}
+
+
+/* 🧾 FORMULAIRE */
 
 .commande-box {
-  background: white;
-  max-width: 550px;
-  margin: 20px auto;
-  padding: 30px 25px;
-  border-radius: 18px;
-  position: relative;
-  box-shadow: 0 15px 50px rgba(0,0,0,0.25);
-}
+  box-shadow:
+    0 25px 70px rgba(0,0,0,0.25);
 
-.commande-box h2 {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.commande-intro {
-  text-align: center;
-  color: #667085;
-  font-size: 14px;
-  margin-bottom: 25px;
-}
-
-.fermer-commande {
-  position: absolute;
-  right: 15px;
-  top: 10px;
-  border: none;
-  background: transparent;
-  font-size: 32px;
-  cursor: pointer;
-  color: #555;
-}
-
-.commande-resume {
-  background: #f5f7fb;
-  padding: 18px;
-  border-radius: 12px;
-  margin-bottom: 25px;
-}
-
-.commande-resume h3 {
-  margin-bottom: 12px;
-}
-
-.commande-total {
-  margin-top: 15px;
-  padding-top: 12px;
-  border-top: 1px solid #ddd;
-  font-size: 18px;
-  text-align: right;
-}
-
-.commande-box label {
-  display: block;
-  font-weight: bold;
-  margin: 15px 0 7px;
-}
-
-.commande-box input,
-.commande-box textarea,
-.commande-box select {
-  width: 100%;
-  padding: 13px;
-  border: 1px solid #d0d5dd;
-  border-radius: 8px;
-  font-family: inherit;
-  font-size: 15px;
-  outline: none;
+  border-top:
+    6px solid #6c5ce7;
 }
 
 .commande-box input:focus,
 .commande-box textarea:focus,
 .commande-box select:focus {
-  border-color: #00c853;
+  outline:
+    none;
+
+  border-color:
+    #6c5ce7;
+
+  box-shadow:
+    0 0 0 4px rgba(108,92,231,0.12);
 }
 
-.paiement-info {
-  margin: 18px 0;
-  padding: 15px;
-  background: #fff8df;
-  border-radius: 10px;
-  font-size: 14px;
+
+/* 📱 CONTACT */
+
+#contact {
+  background:
+    linear-gradient(
+      135deg,
+      #302b63,
+      #6c5ce7
+    );
+
+  color:
+    white;
 }
 
-.paiement-info p {
-  margin-top: 5px;
-  color: #555;
+#contact .title h2,
+#contact .title p {
+  color:
+    white;
 }
 
-.btn-commande {
-  width: 100%;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 10px;
+
+/* 🦶 FOOTER */
+
+footer {
+  background:
+    linear-gradient(
+      135deg,
+      #111827,
+      #302b63
+    );
+
+  border-top:
+    4px solid #6c5ce7;
 }
 
-@media (max-width: 600px) {
 
-  .commande-box {
-    padding: 25px 18px;
-    margin: 10px auto;
+/* 📱 MOBILE */
+
+@media (max-width: 700px) {
+
+  .card {
+    border-radius:
+      16px;
   }
 
-  .commande-box h2 {
-    font-size: 23px;
+  .hero {
+    padding:
+      65px 18px;
   }
 
-}
-
-</style>
-
-
-<!-- ============================= -->
-<!-- JAVASCRIPT -->
-<!-- ============================= -->
-
-<script>
-
-function ouvrirCommande() {
-
-  const modal = document.getElementById("commandeModal");
-
-  if (modal) {
-    modal.style.display = "block";
-    document.body.style.overflow = "hidden";
+  section {
+    padding:
+      55px 15px;
   }
 
-  afficherResumeCommande();
-}
-
-
-function fermerCommande() {
-
-  const modal = document.getElementById("commandeModal");
-
-  if (modal) {
-    modal.style.display = "none";
-    document.body.style.overflow = "auto";
+  .title h2 {
+    font-size:
+      27px;
   }
 
-}
-
-
-function afficherResumeCommande() {
-
-  const resume = document.getElementById("resumePanier");
-  const totalElement = document.getElementById("commandeTotal");
-
-  if (!resume || !totalElement) return;
-
-  /*
-    Cette partie essaie de récupérer le panier
-    déjà utilisé par ton site.
-  */
-
-  if (
-    typeof panier === "undefined" ||
-    !Array.isArray(panier) ||
-    panier.length === 0
-  ) {
-
-    resume.innerHTML =
-      "<p>Aucun service sélectionné.</p>";
-
-    totalElement.textContent = "0 FCFA";
-
-    return;
-  }
-
-
-  let total = 0;
-
-  resume.innerHTML = "";
-
-
-  panier.forEach(function(produit) {
-
-    const nom =
-      produit.nom ||
-      produit.name ||
-      produit.service ||
-      "Service";
-
-    const prix =
-      Number(
-        produit.prix ||
-        produit.price ||
-        0
-      );
-
-    const quantite =
-      Number(
-        produit.quantite ||
-        produit.quantity ||
-        1
-      );
-
-    const sousTotal =
-      prix * quantite;
-
-    total += sousTotal;
-
-
-    const ligne =
-      document.createElement("div");
-
-    ligne.style.marginBottom = "8px";
-
-    ligne.innerHTML =
-      "• " +
-      nom +
-      " × " +
-      quantite +
-      " — " +
-      sousTotal.toLocaleString("fr-FR") +
-      " FCFA";
-
-    resume.appendChild(ligne);
-
-  });
-
-
-  totalElement.textContent =
-    total.toLocaleString("fr-FR") +
-    " FCFA";
-
-}
-
-
-document
-  .getElementById("formCommande")
-  .addEventListener("submit", function(event) {
-
-    event.preventDefault();
-
-
-    const nom =
-      document.getElementById("nomClient").value.trim();
-
-    const telephone =
-      document.getElementById("telephoneClient").value.trim();
-
-    const projet =
-      document.getElementById("projetClient").value.trim();
-
-    const paiement =
-      document.getElementById("paiementClient").value;
-
-
-    if (!nom || !telephone || !projet || !paiement) {
-
-      alert(
-        "Veuillez remplir tous les champs."
-      );
-
-      return;
-    }
-
-
-    let message =
-      "🛒 *NOUVELLE COMMANDE*%0A%0A";
-
-
-    message +=
-      "👤 *Client :* " +
-      encodeURIComponent(nom) +
-      "%0A";
-
-
-    message +=
-      "📱 *WhatsApp :* " +
-      encodeURIComponent(telephone) +
-      "%0A%0A";
-
-
-    message +=
-      "📦 *Commande :*%0A";
-
-
-    if (
-      typeof panier !== "undefined" &&
-      Array.isArray(panier)
-    ) {
-
-      panier.forEach(function(produit) {
-
-        const nomProduit =
-          produit.nom ||
-          produit.name ||
-          produit.service ||
-          "Service";
-
-        const prix =
-          Number(
-            produit.prix ||
-            produit.price ||
-            0
-          );
-
-        const quantite =
-          Number(
-            produit.quantite ||
-            produit.quantity ||
-            1
-          );
-
-        message +=
-          "• " +
-          encodeURIComponent(nomProduit) +
-          " × " +
-          quantite +
-          " — " +
-          (prix * quantite).toLocaleString("fr-FR") +
-          " FCFA%0A";
-
-      });
-
-    }
-
-
-    const total =
-      document
-        .getElementById("commandeTotal")
-        .textContent;
-
-
-    message +=
-      "%0A💰 *Total :* " +
-      encodeURIComponent(total) +
-      "%0A";
-
-
-    message +=
-      "💳 *Paiement :* " +
-      encodeURIComponent(paiement) +
-      "%0A%0A";
-
-
-    message +=
-      "📝 *Projet :*%0A" +
-      encodeURIComponent(projet) +
-      "%0A%0A";
-
-
-    message +=
-      "Merci de confirmer la commande.";
-
-
-    const numeroWhatsApp =
-      "2290152939571";
-
-
-    const url =
-      "https://wa.me/" +
-      numeroWhatsApp +
-      "?text=" +
-      message;
-
-
-    window.open(url, "_blank");
-
-  });
-
-
-window.addEventListener("click", function(event) {
-
-  const modal =
-    document.getElementById("commandeModal");
-
-  if (event.target === modal) {
-    fermerCommande();
-  }
-
-});
-
-</script>
+}</style>
