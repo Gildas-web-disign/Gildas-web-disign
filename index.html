@@ -1,1831 +1,3167 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta charset="UTF-8">
+<title>Gildas Web & Disign | Création Web & Design</title>
 
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Gildas Web & Disign — Création de sites web, logos, affiches publicitaires et Facebook Ads.">
 
-  <title>Gildas Web & Design</title>
+<meta name="theme-color" content="#07080d">
 
-  <style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --bg:#07080d;
+    --bg2:#0c1018;
+    --card:rgba(255,255,255,.055);
+    --text:#f7f8fb;
+    --muted:#9ca5b3;
+    --line:rgba(255,255,255,.11);
+    --primary:#735cff;
+    --secondary:#00d9ff;
+    --green:#25d366;
+    --radius:24px;
+    --shadow:0 30px 90px rgba(0,0,0,.45);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Inter,Arial,sans-serif;
+    color:var(--text);
+    background:
+        radial-gradient(circle at 15% 10%,rgba(115,92,255,.16),transparent 28%),
+        radial-gradient(circle at 85% 25%,rgba(0,217,255,.09),transparent 25%),
+        var(--bg);
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:9999;
+    opacity:.025;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button{
+    font-family:inherit;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+.container{
+    width:min(1180px,92%);
+    margin:auto;
+}
+
+section{
+    padding:110px 0;
+    position:relative;
+}
+
+.section-label{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    padding:8px 14px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.035);
+    border-radius:999px;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:#c8ced9;
+    margin-bottom:20px;
+}
+
+.section-label::before{
+    content:"";
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--secondary);
+    box-shadow:0 0 15px var(--secondary);
+}
+
+.section-title{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(38px,5.5vw,68px);
+    line-height:1;
+    letter-spacing:-3px;
+    max-width:900px;
+}
+
+.gradient{
+    background:linear-gradient(100deg,#fff,#8272ff,#00d9ff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.section-text{
+    color:var(--muted);
+    line-height:1.8;
+    max-width:680px;
+    margin-top:20px;
+}
+
+
+/* ================================
+   LOADER
+================================ */
+
+.loader{
+    position:fixed;
+    inset:0;
+    background:#05060a;
+    z-index:99999;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    transition:.8s;
+}
+
+.loader.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.loader-logo{
+    font-family:"Space Grotesk";
+    font-size:48px;
+    font-weight:900;
+    letter-spacing:-4px;
+}
+
+.loader-logo span{
+    color:var(--secondary);
+}
+
+.loader-line{
+    width:180px;
+    height:2px;
+    background:#202632;
+    margin-top:22px;
+    overflow:hidden;
+}
+
+.loader-line::after{
+    content:"";
+    display:block;
+    width:100%;
+    height:100%;
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
+    animation:loading 1.4s infinite;
+}
+
+@keyframes loading{
+    from{
+        transform:translateX(-100%);
     }
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #f7f8fa;
-      color: #222;
-      line-height: 1.6;
+    to{
+        transform:translateX(100%);
+    }
+}
+
+
+/* ================================
+   CURSOR
+================================ */
+
+.cursor{
+    position:fixed;
+    width:20px;
+    height:20px;
+    border:1px solid rgba(255,255,255,.7);
+    border-radius:50%;
+    pointer-events:none;
+    z-index:10000;
+    transform:translate(-50%,-50%);
+    transition:.25s;
+}
+
+.cursor-dot{
+    position:fixed;
+    width:5px;
+    height:5px;
+    background:white;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:10001;
+    transform:translate(-50%,-50%);
+}
+
+.cursor.active{
+    width:50px;
+    height:50px;
+    border-color:var(--secondary);
+    background:rgba(0,217,255,.08);
+}
+
+@media(max-width:800px){
+
+    .cursor,
+    .cursor-dot{
+        display:none;
     }
 
-    header {
-      background: #111827;
-      color: white;
-      padding: 18px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+}
+
+
+/* ================================
+   NAVBAR
+================================ */
+
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:20px 0;
+    z-index:5000;
+    transition:.35s;
+}
+
+.navbar.scrolled{
+    padding:12px 0;
+    background:rgba(7,8,13,.78);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--line);
+}
+
+.nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-family:"Space Grotesk";
+    font-size:23px;
+    font-weight:900;
+    letter-spacing:-1.5px;
+}
+
+.logo span{
+    color:var(--secondary);
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:28px;
+}
+
+.nav-links a{
+    color:#aeb7c4;
+    font-size:13px;
+    transition:.25s;
+}
+
+.nav-links a:hover{
+    color:white;
+}
+
+.nav-cta{
+    color:#05060a!important;
+    background:white;
+    padding:12px 17px;
+    border-radius:999px;
+    font-weight:800;
+}
+
+.menu{
+    display:none;
+    border:1px solid var(--line);
+    background:var(--card);
+    color:white;
+    width:44px;
+    height:44px;
+    border-radius:12px;
+    font-size:20px;
+}
+
+@media(max-width:850px){
+
+    .menu{
+        display:block;
     }
 
-    .header-container {
-      max-width: 1100px;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+    .nav-links{
+        position:absolute;
+        left:4%;
+        top:72px;
+        width:92%;
+        padding:20px;
+        background:rgba(8,10,16,.96);
+        border:1px solid var(--line);
+        border-radius:20px;
+        backdrop-filter:blur(20px);
+        flex-direction:column;
+        align-items:stretch;
+        opacity:0;
+        pointer-events:none;
+        transform:translateY(-15px);
+        transition:.3s;
     }
 
-    .logo-text {
-      font-size: 20px;
-      font-weight: bold;
+    .nav-links.open{
+        opacity:1;
+        pointer-events:auto;
+        transform:none;
     }
 
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
+    .nav-links a{
+        padding:12px;
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
+}
+
+
+/* ================================
+   HERO
+================================ */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding-top:140px;
+    overflow:hidden;
+}
+
+.hero-grid{
+    position:absolute;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:60px 60px;
+    mask-image:linear-gradient(to bottom,black,transparent);
+}
+
+.orb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(75px);
+    pointer-events:none;
+}
+
+.orb1{
+    width:400px;
+    height:400px;
+    background:rgba(115,92,255,.17);
+    left:-180px;
+    top:25%;
+}
+
+.orb2{
+    width:350px;
+    height:350px;
+    background:rgba(0,217,255,.1);
+    right:-150px;
+    top:20%;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:950px;
+}
+
+.status{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    border:1px solid rgba(37,211,102,.25);
+    background:rgba(37,211,102,.05);
+    color:#baf2ca;
+    padding:9px 14px;
+    border-radius:999px;
+    font-size:11px;
+    margin-bottom:25px;
+    animation:up .8s both;
+}
+
+.status i{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 15px var(--green);
+    animation:pulse 1.7s infinite;
+}
+
+@keyframes pulse{
+
+    50%{
+        opacity:.3;
+        transform:scale(.7);
     }
 
-    nav a:hover {
-      opacity: 0.75;
+}
+
+.hero h1{
+    font-family:"Space Grotesk";
+    font-size:clamp(53px,9vw,110px);
+    line-height:.9;
+    letter-spacing:-6px;
+    animation:up .8s .1s both;
+}
+
+.hero-description{
+    color:#aab3c0;
+    font-size:17px;
+    line-height:1.8;
+    max-width:690px;
+    margin-top:30px;
+    animation:up .8s .2s both;
+}
+
+.hero-description strong{
+    color:white;
+}
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:13px;
+    margin-top:35px;
+    animation:up .8s .3s both;
+}
+
+.btn{
+    min-height:52px;
+    padding:0 22px;
+    border-radius:14px;
+    border:1px solid var(--line);
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    font-size:13px;
+    font-weight:800;
+    transition:.3s;
+}
+
+.btn-primary{
+    background:white;
+    color:#05060a;
+}
+
+.btn-primary:hover{
+    transform:translateY(-5px);
+    box-shadow:0 20px 45px rgba(255,255,255,.12);
+}
+
+.btn-secondary{
+    background:rgba(255,255,255,.035);
+}
+
+.btn-secondary:hover{
+    background:rgba(255,255,255,.09);
+    transform:translateY(-5px);
+}
+
+.hero-stats{
+    display:flex;
+    gap:35px;
+    margin-top:55px;
+    flex-wrap:wrap;
+    animation:up .8s .4s both;
+}
+
+.stat strong{
+    display:block;
+    font-family:"Space Grotesk";
+    font-size:24px;
+}
+
+.stat span{
+    color:#727d8c;
+    font-size:11px;
+}
+
+@keyframes up{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
     }
 
-    section {
-      padding: 70px 20px;
+    to{
+        opacity:1;
+        transform:none;
     }
 
-    .hero {
-      background: white;
-      text-align: center;
-      padding: 90px 20px;
+}
+
+
+/* ================================
+   PROFILE IMAGE
+================================ */
+
+.profile-section{
+    margin-top:50px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    animation:up .8s .5s both;
+}
+
+.profile-image{
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid rgba(255,255,255,.15);
+    box-shadow:0 0 35px rgba(115,92,255,.25);
+}
+
+.profile-info strong{
+    display:block;
+    font-size:14px;
+}
+
+.profile-info span{
+    color:#778190;
+    font-size:11px;
+}
+
+
+/* ================================
+   MARQUEE
+================================ */
+
+.marquee{
+    overflow:hidden;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:18px 0;
+    background:rgba(255,255,255,.02);
+}
+
+.track{
+    width:max-content;
+    display:flex;
+    animation:marquee 25s linear infinite;
+}
+
+.track span{
+    margin:0 25px;
+    color:#7d8794;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.track b{
+    color:var(--secondary);
+}
+
+@keyframes marquee{
+
+    to{
+        transform:translateX(-50%);
     }
 
-    .hero h1 {
-      font-size: 42px;
-      margin-bottom: 20px;
+}
+
+
+/* ================================
+   SERVICES
+================================ */
+
+.services-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+    margin-top:55px;
+}
+
+.service{
+    padding:30px;
+    min-height:280px;
+    position:relative;
+    overflow:hidden;
+    border:1px solid var(--line);
+    border-radius:24px;
+    background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.025));
+    transition:.4s;
+}
+
+.service:hover{
+    transform:translateY(-9px);
+    border-color:rgba(115,92,255,.5);
+    box-shadow:var(--shadow);
+}
+
+.service-number{
+    color:#596373;
+    font-size:11px;
+    font-weight:900;
+}
+
+.service-icon{
+    font-size:30px;
+    margin:30px 0 18px;
+}
+
+.service h3{
+    font-size:19px;
+    margin-bottom:12px;
+}
+
+.service p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.7;
+}
+
+@media(max-width:950px){
+
+    .services-grid{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .hero p {
-      max-width: 700px;
-      margin: 0 auto 30px;
-      color: #667085;
-      font-size: 17px;
+}
+
+@media(max-width:550px){
+
+    .services-grid{
+        grid-template-columns:1fr;
     }
 
-    .btn {
-      display: inline-block;
-      border: none;
-      border-radius: 10px;
-      padding: 13px 20px;
-      background: #111827;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 15px;
+}
+
+
+/* ================================
+   ABOUT
+================================ */
+
+.about{
+    display:grid;
+    grid-template-columns:.85fr 1.15fr;
+    gap:70px;
+    align-items:center;
+}
+
+.about-image{
+    position:relative;
+    border-radius:30px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:#11151e;
+    box-shadow:var(--shadow);
+}
+
+.about-image img{
+    width:100%;
+    aspect-ratio:4/5;
+    object-fit:cover;
+    transition:.7s;
+}
+
+.about-image:hover img{
+    transform:scale(1.05);
+}
+
+.about-image::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top,rgba(0,0,0,.55),transparent 50%);
+    pointer-events:none;
+}
+
+.about-badge{
+    position:absolute;
+    left:20px;
+    bottom:20px;
+    z-index:2;
+    padding:12px 15px;
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:15px;
+    background:rgba(5,7,11,.7);
+    backdrop-filter:blur(15px);
+}
+
+.about-badge strong{
+    display:block;
+}
+
+.about-badge span{
+    color:#8e98a6;
+    font-size:11px;
+}
+
+.about-content p{
+    color:var(--muted);
+    line-height:1.8;
+    margin-top:20px;
+}
+
+.about-points{
+    margin-top:30px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.point{
+    padding:18px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:rgba(255,255,255,.025);
+}
+
+.point strong{
+    display:block;
+    margin-bottom:6px;
+}
+
+.point span{
+    color:#7e8896;
+    font-size:11px;
+}
+
+@media(max-width:850px){
+
+    .about{
+        grid-template-columns:1fr;
     }
 
-    .btn:hover {
-      opacity: 0.9;
+}
+
+@media(max-width:500px){
+
+    .about-points{
+        grid-template-columns:1fr;
     }
 
-    .title {
-      text-align: center;
-      margin-bottom: 40px;
+}
+
+
+/* ================================
+   PORTFOLIO
+================================ */
+
+.filters{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:40px;
+}
+
+.filter{
+    border:1px solid var(--line);
+    background:var(--card);
+    color:#aab3c0;
+    border-radius:999px;
+    padding:10px 15px;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:700;
+    transition:.25s;
+}
+
+.filter:hover,
+.filter.active{
+    background:white;
+    color:#05060a;
+}
+
+.portfolio{
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    gap:18px;
+    margin-top:30px;
+}
+
+.project{
+    grid-column:span 6;
+    min-height:370px;
+    position:relative;
+    overflow:hidden;
+    border-radius:25px;
+    border:1px solid var(--line);
+    background:#10141c;
+    transition:.4s;
+}
+
+.project:nth-child(3),
+.project:nth-child(4){
+    grid-column:span 6;
+}
+
+.project:hover{
+    transform:translateY(-8px);
+    box-shadow:var(--shadow);
+}
+
+.project img{
+    width:100%;
+    height:100%;
+    position:absolute;
+    inset:0;
+    object-fit:cover;
+    transition:.6s;
+}
+
+.project:hover img{
+    transform:scale(1.06);
+}
+
+.project::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top,rgba(0,0,0,.85),transparent 60%);
+}
+
+.project-info{
+    position:absolute;
+    z-index:2;
+    left:18px;
+    right:18px;
+    bottom:18px;
+    padding:20px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:18px;
+    background:rgba(5,7,11,.68);
+    backdrop-filter:blur(14px);
+}
+
+.project-info span{
+    color:var(--secondary);
+    text-transform:uppercase;
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:1.5px;
+}
+
+.project-info h3{
+    margin-top:6px;
+    font-size:19px;
+}
+
+.project-info p{
+    color:#9aa4b2;
+    font-size:11px;
+    margin-top:5px;
+}
+
+@media(max-width:750px){
+
+    .project,
+    .project:nth-child(3),
+    .project:nth-child(4){
+        grid-column:span 12;
     }
 
-    .title h2 {
-      font-size: 32px;
-      margin-bottom: 8px;
+}
+
+
+/* ================================
+   PROCESS
+================================ */
+
+.process-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-top:55px;
+}
+
+.process{
+    padding:27px;
+    border:1px solid var(--line);
+    border-radius:20px;
+    background:rgba(255,255,255,.025);
+}
+
+.process-number{
+    width:42px;
+    height:42px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:rgba(115,92,255,.12);
+    color:#aaa1ff;
+    font-weight:900;
+    margin-bottom:25px;
+}
+
+.process h3{
+    margin-bottom:10px;
+}
+
+.process p{
+    color:var(--muted);
+    line-height:1.7;
+    font-size:13px;
+}
+
+@media(max-width:850px){
+
+    .process-grid{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .title p {
-      color: #667085;
+}
+
+@media(max-width:550px){
+
+    .process-grid{
+        grid-template-columns:1fr;
     }
 
-    .products {
-      max-width: 1100px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 25px;
+}
+
+
+/* ================================
+   OFFERS
+================================ */
+
+.offers{
+    background:rgba(255,255,255,.018);
+}
+
+.offers-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-top:55px;
+}
+
+.offer{
+    padding:32px;
+    border:1px solid var(--line);
+    border-radius:26px;
+    background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.025));
+    transition:.4s;
+    position:relative;
+}
+
+.offer:hover{
+    transform:translateY(-8px);
+    box-shadow:var(--shadow);
+}
+
+.offer.featured{
+    border-color:rgba(115,92,255,.55);
+}
+
+.badge{
+    position:absolute;
+    right:18px;
+    top:18px;
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
+    padding:7px 10px;
+    border-radius:999px;
+    font-size:9px;
+    font-weight:900;
+}
+
+.offer h3{
+    font-size:21px;
+}
+
+.offer-description{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.7;
+    margin:12px 0 25px;
+}
+
+.price{
+    font-family:"Space Grotesk";
+    font-size:39px;
+    font-weight:900;
+    letter-spacing:-2px;
+}
+
+.price small{
+    font-family:Inter;
+    font-size:11px;
+    color:#77818f;
+    letter-spacing:0;
+}
+
+.features{
+    list-style:none;
+    margin:25px 0;
+}
+
+.features li{
+    padding:9px 0;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    color:#b5beca;
+    font-size:12px;
+}
+
+.features li::before{
+    content:"✓";
+    color:var(--secondary);
+    margin-right:9px;
+    font-weight:900;
+}
+
+.offer .btn{
+    width:100%;
+}
+
+@media(max-width:850px){
+
+    .offers-grid{
+        grid-template-columns:1fr;
     }
 
-    .card {
-      background: white;
-      border-radius: 18px;
-      padding: 25px;
-      text-align: center;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+}
+
+
+/* ================================
+   TRUST
+================================ */
+
+.trust-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.trust-list{
+    margin-top:30px;
+}
+
+.trust-item{
+    display:flex;
+    gap:15px;
+    padding:20px 0;
+    border-bottom:1px solid var(--line);
+}
+
+.check{
+    flex:0 0 34px;
+    width:34px;
+    height:34px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(37,211,102,.08);
+    border-radius:10px;
+    color:var(--green);
+}
+
+.trust-item h4{
+    margin-bottom:5px;
+}
+
+.trust-item p{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.7;
+}
+
+.trust-visual{
+    min-height:430px;
+    border:1px solid var(--line);
+    border-radius:30px;
+    overflow:hidden;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+        radial-gradient(circle at 30% 20%,rgba(115,92,255,.3),transparent 35%),
+        radial-gradient(circle at 75% 80%,rgba(0,217,255,.16),transparent 30%),
+        #0d1119;
+}
+
+.mockup{
+    width:76%;
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:24px;
+    padding:25px;
+    background:rgba(255,255,255,.055);
+    backdrop-filter:blur(20px);
+    transform:rotate(-4deg);
+    box-shadow:var(--shadow);
+    animation:floatCard 6s ease-in-out infinite;
+}
+
+@keyframes floatCard{
+
+    50%{
+        transform:rotate(2deg) translateY(-15px);
     }
 
-    .card img {
-      width: 100%;
-      max-width: 300px;
-      height: 190px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 18px;
+}
+
+.mock-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:25px;
+}
+
+.dots{
+    display:flex;
+    gap:5px;
+}
+
+.dots i{
+    width:7px;
+    height:7px;
+    background:#626c7b;
+    border-radius:50%;
+}
+
+.mock-line{
+    height:9px;
+    border-radius:10px;
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
+    margin-bottom:13px;
+}
+
+.mock-line.small{
+    width:45%;
+    opacity:.4;
+}
+
+.mock-images{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:9px;
+    margin-top:25px;
+}
+
+.mock-images div{
+    height:100px;
+    border-radius:12px;
+    background:
+        linear-gradient(135deg,rgba(115,92,255,.35),rgba(0,217,255,.12));
+}
+
+@media(max-width:850px){
+
+    .trust-grid{
+        grid-template-columns:1fr;
     }
 
-    .card h3 {
-      margin-bottom: 10px;
+}
+
+
+/* ================================
+   FAQ
+================================ */
+
+.faq{
+    max-width:850px;
+    margin:55px auto 0;
+}
+
+.faq-item{
+    border-bottom:1px solid var(--line);
+}
+
+.question{
+    width:100%;
+    border:0;
+    background:none;
+    color:white;
+    padding:22px 0;
+    display:flex;
+    justify-content:space-between;
+    text-align:left;
+    cursor:pointer;
+    font-weight:700;
+    font-size:15px;
+}
+
+.question span{
+    font-size:24px;
+    color:#6f7988;
+    transition:.3s;
+}
+
+.answer{
+    max-height:0;
+    overflow:hidden;
+    transition:.4s;
+}
+
+.answer p{
+    padding-bottom:22px;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.8;
+}
+
+.faq-item.active .question span{
+    transform:rotate(45deg);
+    color:var(--secondary);
+}
+
+
+/* ================================
+   CONTACT
+================================ */
+
+.contact-box{
+    padding:70px;
+    border:1px solid var(--line);
+    border-radius:35px;
+    overflow:hidden;
+    position:relative;
+    background:
+        radial-gradient(circle at 20% 20%,rgba(115,92,255,.22),transparent 35%),
+        radial-gradient(circle at 80% 80%,rgba(0,217,255,.12),transparent 35%),
+        rgba(255,255,255,.025);
+}
+
+.contact-box h2{
+    font-family:"Space Grotesk";
+    font-size:clamp(40px,6vw,75px);
+    line-height:1;
+    letter-spacing:-3px;
+    max-width:850px;
+}
+
+.contact-box h2 span{
+    color:var(--secondary);
+}
+
+.contact-box p{
+    color:#9ca6b3;
+    max-width:650px;
+    line-height:1.8;
+    margin:25px 0 30px;
+}
+
+.contact-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+@media(max-width:600px){
+
+    .contact-box{
+        padding:35px 25px;
     }
 
-    .card p {
-      color: #667085;
-      margin-bottom: 15px;
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+footer{
+    border-top:1px solid var(--line);
+    padding:40px 0;
+}
+
+.footer{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+}
+
+.footer p{
+    color:#737d8b;
+    font-size:11px;
+}
+
+.footer-links{
+    display:flex;
+    gap:20px;
+}
+
+.footer-links a{
+    color:#8b95a2;
+    font-size:11px;
+}
+
+@media(max-width:600px){
+
+    .footer{
+        flex-direction:column;
+        text-align:center;
     }
 
-    .price {
-      font-weight: bold;
-      margin-bottom: 18px;
+}
+
+
+/* ================================
+   WHATSAPP
+================================ */
+
+.whatsapp{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:4000;
+    width:58px;
+    height:58px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 10px 35px rgba(37,211,102,.35);
+    font-size:25px;
+    transition:.3s;
+}
+
+.whatsapp:hover{
+    transform:scale(1.1) translateY(-5px);
+}
+
+.whatsapp::before{
+    content:"";
+    position:absolute;
+    inset:-7px;
+    border:1px solid rgba(37,211,102,.4);
+    border-radius:50%;
+    animation:ring 2s infinite;
+}
+
+@keyframes ring{
+
+    50%{
+        transform:scale(1.2);
+        opacity:0;
     }
 
-    .card .btn {
-      width: 100%;
-      max-width: 280px;
+}
+
+
+/* ================================
+   REVEAL
+================================ */
+
+.reveal{
+    opacity:0;
+    transform:translateY(35px);
+    transition:opacity .8s,transform .8s;
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:none;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media(max-width:600px){
+
+    section{
+        padding:80px 0;
     }
 
-    .icon {
-      font-size: 60px;
-      margin: 35px 0;
+    .hero{
+        padding-top:120px;
     }
 
-    /* PANIER */
-
-    #panier-section {
-      background: white;
+    .hero h1{
+        font-size:53px;
+        letter-spacing:-4px;
     }
 
-    .panier-container {
-      max-width: 700px;
-      margin: auto;
-      background: #f7f8fa;
-      padding: 25px;
-      border-radius: 18px;
+    .hero-description{
+        font-size:15px;
     }
 
-    .ligne-panier {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      background: white;
-      padding: 15px;
-      margin-bottom: 10px;
-      border-radius: 10px;
+    .section-title{
+        font-size:40px;
     }
 
-    .ligne-panier button {
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      font-size: 18px;
+}
+
+
+/* ================================
+   REDUCED MOTION
+================================ */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms!important;
+        animation-iteration-count:1!important;
+        transition-duration:.01ms!important;
+        scroll-behavior:auto!important;
     }
 
-    .total-panier {
-      text-align: right;
-      font-size: 20px;
-      padding: 18px 0;
-    }
+}
 
-    .finaliser {
-      width: 100%;
-      min-height: 52px;
-      font-size: 16px;
-    }
-
-    /* AVANTAGES */
-
-    #avantages {
-      background: #f7f8fa;
-    }
-
-    /* PAIEMENT */
-
-    #paiement {
-      background: white;
-    }
-
-    .paiement-container {
-      max-width: 750px;
-      margin: auto;
-      text-align: center;
-    }
-
-    .paiement-card,
-    .paiement-info {
-      background: #f7f8fa;
-      padding: 25px;
-      border-radius: 15px;
-      margin-bottom: 20px;
-      text-align: left;
-    }
-
-    /* COMMANDE */
-
-    .commande-modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.65);
-      z-index: 9999;
-      overflow-y: auto;
-      padding: 20px;
-    }
-
-    .commande-box {
-      max-width: 550px;
-      margin: 30px auto;
-      background: white;
-      padding: 30px;
-      border-radius: 18px;
-      position: relative;
-    }
-
-    .fermer-commande {
-      position: absolute;
-      right: 15px;
-      top: 10px;
-      border: none;
-      background: transparent;
-      font-size: 30px;
-      cursor: pointer;
-    }
-
-    .commande-box h2 {
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    .commande-intro {
-      text-align: center;
-      color: #667085;
-      margin-bottom: 25px;
-    }
-
-    .commande-resume {
-      background: #f7f8fa;
-      padding: 18px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-    }
-
-    .commande-total {
-      text-align: right;
-      font-size: 18px;
-      margin-top: 15px;
-      border-top: 1px solid #ddd;
-      padding-top: 12px;
-    }
-
-    .commande-box label {
-      display: block;
-      font-weight: bold;
-      margin: 15px 0 7px;
-    }
-
-    .commande-box input,
-    .commande-box textarea,
-    .commande-box select {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #d0d5dd;
-      border-radius: 8px;
-      font-size: 15px;
-    }
-
-    .paiement-info-commande {
-      background: #fff8df;
-      padding: 15px;
-      border-radius: 10px;
-      margin: 18px 0;
-    }
-
-    .btn-commande {
-      width: 100%;
-      min-height: 52px;
-      margin-top: 10px;
-    }
-
-    footer {
-      background: #111827;
-      color: white;
-      text-align: center;
-      padding: 30px 20px;
-    }
-
-    @media (max-width: 700px) {
-
-      .header-container {
-        flex-direction: column;
-      }
-
-      nav {
-        justify-content: center;
-      }
-
-      .hero h1 {
-        font-size: 32px;
-      }
-
-      .products {
-        grid-template-columns: 1fr;
-      }
-
-      .ligne-panier {
-        align-items: flex-start;
-      }
-
-    }
-
-  </style>
-
+</style>
 </head>
 
 
 <body>
 
 
-<header>
+<!-- ================================
+     LOADER
+================================ -->
 
-  <div class="header-container">
+<div class="loader" id="loader">
 
-    <div class="logo-text">
-      Gildas Web & Design
+    <div class="loader-logo">
+        GILDAS<span>.</span>
     </div>
 
-    <nav>
-
-      <a href="#accueil">Accueil</a>
-
-      <a href="#boutique">Boutique</a>
-
-      <a href="#avantages">Pourquoi nous ?</a>
-
-      <a href="#panier-section">Panier</a>
-
-      <a href="#paiement">Paiement</a>
-
-      <a href="#contact">Contact</a>
-
-    </nav>
-
-  </div>
-
-</header>
-
-
-<!-- ACCUEIL -->
-
-<section id="accueil" class="hero">
-
-  <h1>
-    Gildas Web & Design
-  </h1>
-
-  <p>
-    Donnez une image professionnelle à votre activité grâce
-    à nos services de création graphique et de développement web.
-  </p>
-
-  <a class="btn" href="#boutique">
-    🛒 Voir la boutique
-  </a>
-
-</section>
-
-
-<!-- BOUTIQUE -->
-
-<section id="boutique">
-
-  <div class="title">
-
-    <h2>
-      🛍️ Notre boutique
-    </h2>
-
-    <p>
-      Choisissez le service dont vous avez besoin.
-    </p>
-
-  </div>
-
-
-  <div class="products">
-
-
-    <!-- AFFICHE -->
-
-    <div class="card">
-
-      <img
-        src="affiche1.jpg"
-        alt="Affiche publicitaire">
-
-      <h3>
-        Affiche publicitaire
-      </h3>
-
-      <p>
-        Une affiche professionnelle pour promouvoir
-        votre activité, produit ou événement.
-      </p>
-
-      <div class="price">
-        À partir de 2 000 FCFA
-      </div>
-
-      <button
-        class="btn"
-        type="button"
-        onclick="ajouterAuPanier('Affiche publicitaire', 2000)">
-
-        🛒 Ajouter au panier
-
-      </button>
-
-    </div>
-
-
-    <!-- SITE WEB -->
-
-    <div class="card">
-
-      <img
-        src="site.jpg"
-        alt="Création de site web">
-
-      <h3>
-        Création de site web
-      </h3>
-
-      <p>
-        Création d'un site web moderne,
-        responsive et adapté à votre activité.
-      </p>
-
-      <div class="price">
-        À partir de 15 000 FCFA
-      </div>
-
-      <button
-        class="btn"
-        type="button"
-        onclick="ajouterAuPanier('Création de site web', 15000)">
-
-        🛒 Ajouter au panier
-
-      </button>
-
-    </div>
-
-
-    <!-- LOGO -->
-
-    <div class="card">
-
-      <img
-        src="logo.jpg"
-        alt="Logo Gildas Web & Design">
-
-      <h3>
-        Création de logo
-      </h3>
-
-      <p>
-        Un logo unique et professionnel pour donner
-        une identité forte à votre marque.
-      </p>
-
-      <div class="price">
-        À partir de 3 000 FCFA
-      </div>
-
-      <button
-        class="btn"
-        type="button"
-        onclick="ajouterAuPanier('Création de logo', 3000)">
-
-        🛒 Ajouter au panier
-
-      </button>
-
-    </div>
-
-
-    <!-- DESIGN -->
-
-    <div class="card">
-
-      <div class="icon">
-        ✨
-      </div>
-
-      <h3>
-        Design graphique
-      </h3>
-
-      <p>
-        Conception graphique personnalisée selon
-        vos besoins et votre image de marque.
-      </p>
-
-      <div class="price">
-        Sur devis
-      </div>
-
-      <button
-        class="btn"
-        type="button"
-        onclick="ajouterAuPanier('Design graphique', 0)">
-
-        🛒 Ajouter au panier
-
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- AVANTAGES -->
-
-<section id="avantages">
-
-  <div class="title">
-
-    <h2>
-      ⭐ Pourquoi choisir Gildas Web & Design ?
-    </h2>
-
-    <p>
-      Nous mettons notre créativité au service de vos projets.
-    </p>
-
-  </div>
-
-  <div class="products">
-
-    <div class="card">
-
-      <div class="icon">
-        🎯
-      </div>
-
-      <h3>
-        Travail personnalisé
-      </h3>
-
-      <p>
-        Chaque projet est conçu selon vos besoins,
-        votre activité et votre identité.
-      </p>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="icon">
-        💎
-      </div>
-
-      <h3>
-        Design professionnel
-      </h3>
-
-      <p>
-        Des visuels modernes adaptés à votre image.
-      </p>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="icon">
-        ⚡
-      </div>
-
-      <h3>
-        Service rapide
-      </h3>
-
-      <p>
-        Nous travaillons avec sérieux et efficacité.
-      </p>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="icon">
-        📱
-      </div>
-
-      <h3>
-        Accompagnement
-      </h3>
-
-      <p>
-        Contact facile par WhatsApp pour discuter de votre projet.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- PANIER -->
-
-<section id="panier-section">
-
-  <div class="title">
-
-    <h2>
-      🛒 Mon panier
-    </h2>
-
-    <p>
-      Vérifiez vos services avant de passer commande.
-    </p>
-
-  </div>
-
-
-  <div class="panier-container">
-
-    <div id="panier">
-
-      <p>
-        Votre panier est vide.
-      </p>
-
-    </div>
-
-
-    <button
-      class="btn finaliser"
-      type="button"
-      onclick="ouvrirCommande()">
-
-      🛒 Finaliser ma commande
-
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- PAIEMENT -->
-
-<section id="paiement">
-
-  <div class="paiement-container">
-
-    <div class="title">
-
-      <h2>
-        💳 Paiement
-      </h2>
-
-      <p>
-        Choisissez un moyen de paiement pour régler votre commande.
-      </p>
-
-    </div>
-
-
-    <div class="paiement-card">
-
-      <h3>
-        💛 MTN Mobile Money
-      </h3>
-
-      <p>
-        Le paiement peut être effectué par Mobile Money.
-        Les instructions vous seront communiquées après confirmation
-        de votre commande.
-      </p>
-
-    </div>
-
-
-    <div class="paiement-info">
-
-      <h3>
-        📌 Comment ça fonctionne ?
-      </h3>
-
-      <ol>
-
-        <li>
-          Choisissez votre service.
-        </li>
-
-        <li>
-          Ajoutez-le au panier.
-        </li>
-
-        <li>
-          Finalisez votre commande.
-        </li>
-
-        <li>
-          Nous vous communiquons les instructions de paiement.
-        </li>
-
-      </ol>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- CONTACT -->
-
-<section id="contact">
-
-  <div class="title">
-
-    <h2>
-      📞 Contact
-    </h2>
-
-    <p>
-      Une question ou un projet ? Contactez-nous directement.
-    </p>
-
-  </div>
-
-  <div style="text-align:center;">
-
-    <a
-      class="btn"
-      href="https://wa.me/2290152939571"
-      target="_blank">
-
-      📲 Nous contacter sur WhatsApp
-
-    </a>
-
-  </div>
-
-</section>
-
-
-<!-- COMMANDE -->
-
-<div
-  id="commandeModal"
-  class="commande-modal">
-
-
-  <div class="commande-box">
-
-
-    <button
-      class="fermer-commande"
-      type="button"
-      onclick="fermerCommande()">
-
-      ×
-
-    </button>
-
-
-    <h2>
-      🛒 Finaliser ma commande
-    </h2>
-
-
-    <p class="commande-intro">
-
-      Remplissez les informations ci-dessous
-      pour envoyer votre demande.
-
-    </p>
-
-
-    <div class="commande-resume">
-
-      <h3>
-        🧾 Votre commande
-      </h3>
-
-      <div id="resumePanier">
-
-        Aucun service sélectionné.
-
-      </div>
-
-      <div class="commande-total">
-
-        Total :
-        <strong id="commandeTotal">
-          0 FCFA
-        </strong>
-
-      </div>
-
-    </div>
-
-
-    <form id="formCommande">
-
-
-      <label for="nomClient">
-        👤 Nom complet
-      </label>
-
-      <input
-        id="nomClient"
-        type="text"
-        placeholder="Votre nom"
-        required>
-
-
-      <label for="telephoneClient">
-        📱 Numéro WhatsApp
-      </label>
-
-      <input
-        id="telephoneClient"
-        type="tel"
-        placeholder="Votre numéro"
-        required>
-
-
-      <label for="projetClient">
-        📝 Détails du projet
-      </label>
-
-      <textarea
-        id="projetClient"
-        rows="4"
-        placeholder="Décrivez votre projet..."
-        required></textarea>
-
-
-      <label for="paiementClient">
-        💳 Moyen de paiement
-      </label>
-
-      <select
-        id="paiementClient"
-        required>
-
-        <option value="">
-          -- Choisissez --
-        </option>
-
-        <option value="MTN Mobile Money">
-          MTN Mobile Money
-        </option>
-
-        <option value="À confirmer">
-          À confirmer
-        </option>
-
-      </select>
-
-
-      <div class="paiement-info-commande">
-
-        <strong>
-          💛 MTN Mobile Money
-        </strong>
-
-        <p>
-          Les instructions de paiement seront communiquées
-          après réception de la commande.
-        </p>
-
-      </div>
-
-
-      <button
-        class="btn btn-commande"
-        type="submit">
-
-        📲 Confirmer la commande sur WhatsApp
-
-      </button>
-
-
-    </form>
-
-  </div>
+    <div class="loader-line"></div>
 
 </div>
 
 
-<!-- FOOTER -->
+<!-- CURSOR -->
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+
+<!-- ================================
+     NAVBAR
+================================ -->
+
+<header class="navbar" id="navbar">
+
+    <div class="container nav-inner">
+
+        <a href="#accueil" class="logo">
+            Gildas Web & Disign<span>.</span>
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+
+            <a href="#accueil">Accueil</a>
+            <a href="#services">Services</a>
+            <a href="#apropos">À propos</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#offres">Tarifs</a>
+
+            <a href="#contact" class="nav-cta">
+                Démarrer un projet
+            </a>
+
+        </nav>
+
+        <button class="menu" id="menu">
+            ☰
+        </button>
+
+    </div>
+
+</header>
+
+
+<main>
+
+
+<!-- ================================
+     HERO
+================================ -->
+
+<section class="hero" id="accueil">
+
+    <div class="hero-grid"></div>
+
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <div class="status">
+                <i></i>
+                Disponible pour de nouveaux projets
+            </div>
+
+            <h1>
+
+                Donnez à votre
+                <span class="gradient">
+                    activité
+                </span>
+                une présence digitale remarquable.
+
+            </h1>
+
+            <p class="hero-description">
+
+                Je suis <strong>Enock Kehoumbou</strong>,
+                créateur de sites web et designer graphique derrière
+                <strong>Gildas Web & Disign</strong>.
+
+                Je crée des sites web, logos, affiches publicitaires
+                et visuels digitaux pour aider les entrepreneurs,
+                commerces et organisations à présenter leur activité
+                de manière professionnelle.
+
+            </p>
+
+
+            <div class="actions">
+
+                <a href="#portfolio" class="btn btn-primary">
+                    ✦ Voir mes réalisations
+                </a>
+
+                <a href="#offres" class="btn btn-secondary">
+                    Voir les tarifs →
+                </a>
+
+            </div>
+
+
+            <div class="profile-section">
+
+                <img
+                    src="moi.jpg"
+                    alt="Enock Kehoumbou - Gildas Web & Disign"
+                    class="profile-image"
+                >
+
+                <div class="profile-info">
+
+                    <strong>Enock Kehoumbou</strong>
+
+                    <span>
+                        Créateur Web • Designer • Digital
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-stats">
+
+                <div class="stat">
+
+                    <strong>WEB</strong>
+
+                    <span>
+                        Sites professionnels
+                    </span>
+
+                </div>
+
+                <div class="stat">
+
+                    <strong>DESIGN</strong>
+
+                    <span>
+                        Logos & affiches
+                    </span>
+
+                </div>
+
+                <div class="stat">
+
+                    <strong>ADS</strong>
+
+                    <span>
+                        Facebook Ads
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     MARQUEE
+================================ -->
+
+<div class="marquee">
+
+    <div class="track">
+
+        <span>Création Web <b>✦</b></span>
+        <span>Design Graphique <b>✦</b></span>
+        <span>Logo <b>✦</b></span>
+        <span>Affiches <b>✦</b></span>
+        <span>Facebook Ads <b>✦</b></span>
+
+        <span>Création Web <b>✦</b></span>
+        <span>Design Graphique <b>✦</b></span>
+        <span>Logo <b>✦</b></span>
+        <span>Affiches <b>✦</b></span>
+        <span>Facebook Ads <b>✦</b></span>
+
+    </div>
+
+</div>
+
+
+<!-- ================================
+     SERVICES
+================================ -->
+
+<section id="services">
+
+    <div class="container">
+
+        <div class="reveal">
+
+            <div class="section-label">
+                Mes services
+            </div>
+
+            <h2 class="section-title">
+
+                Je transforme vos idées
+                en <span>solutions digitales.</span>
+
+            </h2>
+
+            <p class="section-text">
+
+                Chaque projet est pensé pour être moderne,
+                professionnel et adapté aux besoins réels
+                de votre activité.
+
+            </p>
+
+        </div>
+
+
+        <div class="services-grid">
+
+
+            <article class="service reveal">
+
+                <div class="service-number">
+                    01
+                </div>
+
+                <div class="service-icon">
+                    🌐
+                </div>
+
+                <h3>
+                    Création de sites web
+                </h3>
+
+                <p>
+
+                    Sites vitrines modernes, responsive et adaptés
+                    aux téléphones pour présenter votre entreprise,
+                    vos services ou vos produits.
+
+                </p>
+
+            </article>
+
+
+            <article class="service reveal">
+
+                <div class="service-number">
+                    02
+                </div>
+
+                <div class="service-icon">
+                    🎨
+                </div>
+
+                <h3>
+                    Design graphique
+                </h3>
+
+                <p>
+
+                    Création d'affiches, visuels publicitaires,
+                    publications réseaux sociaux et supports
+                    de communication.
+
+                </p>
+
+            </article>
+
+
+            <article class="service reveal">
+
+                <div class="service-number">
+                    03
+                </div>
+
+                <div class="service-icon">
+                    ✦
+                </div>
+
+                <h3>
+                    Logos & identité
+                </h3>
+
+                <p>
+
+                    Des logos modernes et personnalisés pour
+                    donner à votre marque une identité visuelle
+                    reconnaissable.
+
+                </p>
+
+            </article>
+
+
+            <article class="service reveal">
+
+                <div class="service-number">
+                    04
+                </div>
+
+                <div class="service-icon">
+                    📈
+                </div>
+
+                <h3>
+                    Facebook Ads
+                </h3>
+
+                <p>
+
+                    Création de visuels et accompagnement pour
+                    vos campagnes publicitaires Facebook
+                    et Instagram.
+
+                </p>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     ABOUT
+================================ -->
+
+<section id="apropos">
+
+    <div class="container about">
+
+
+        <div class="about-image reveal">
+
+            <img
+                src="moi.jpg"
+                alt="Enock Kehoumbou"
+            >
+
+            <div class="about-badge">
+
+                <strong>
+                    Gildas Web & Disign
+                </strong>
+
+                <span>
+                    Création • Design • Digital
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="about-content reveal">
+
+            <div class="section-label">
+                À propos
+            </div>
+
+            <h2 class="section-title">
+
+                Derrière
+                <span>Gildas Web & Disign</span>
+
+            </h2>
+
+            <p>
+
+                Je suis Enock Kehoumbou, un jeune créateur passionné
+                par le numérique, le web et la communication visuelle.
+
+            </p>
+
+            <p>
+
+                Mon objectif est simple : permettre aux entrepreneurs,
+                commerces, associations et petites entreprises de
+                disposer d'une présence digitale professionnelle,
+                même avec un budget accessible.
+
+            </p>
+
+
+            <div class="about-points">
+
+                <div class="point">
+
+                    <strong>
+                        📱 Mobile-first
+                    </strong>
+
+                    <span>
+                        Pensé pour les utilisateurs sur téléphone
+                    </span>
+
+                </div>
+
+
+                <div class="point">
+
+                    <strong>
+                        ⚡ Moderne
+                    </strong>
+
+                    <span>
+                        Interfaces actuelles et dynamiques
+                    </span>
+
+                </div>
+
+
+                <div class="point">
+
+                    <strong>
+                        🎯 Sur mesure
+                    </strong>
+
+                    <span>
+                        Chaque projet adapté au besoin
+                    </span>
+
+                </div>
+
+
+                <div class="point">
+
+                    <strong>
+                        💬 Accessible
+                    </strong>
+
+                    <span>
+                        Contact direct et communication simple
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     PORTFOLIO
+================================ -->
+
+<section id="portfolio">
+
+    <div class="container">
+
+        <div class="reveal">
+
+            <div class="section-label">
+                Portfolio
+            </div>
+
+            <h2 class="section-title">
+
+                Voici ce que
+                <span>je sais créer.</span>
+
+            </h2>
+
+            <p class="section-text">
+
+                Découvrez quelques-unes de mes réalisations.
+                Les projets présentés correspondent à mon travail
+                et à mes compétences.
+
+            </p>
+
+        </div>
+
+
+        <div class="filters reveal">
+
+            <button class="filter active" data-filter="all">
+                Tous
+            </button>
+
+            <button class="filter" data-filter="web">
+                Web
+            </button>
+
+            <button class="filter" data-filter="design">
+                Affiches
+            </button>
+
+            <button class="filter" data-filter="logo">
+                Logos
+            </button>
+
+        </div>
+
+
+        <div class="portfolio">
+
+
+            <!-- SITE -->
+
+            <article
+                class="project reveal"
+                data-category="web"
+            >
+
+                <img
+                    src="site.jpg"
+                    alt="Réalisation de site web par Gildas Web & Disign"
+                    loading="lazy"
+                >
+
+                <div class="project-info">
+
+                    <span>
+                        Web Design
+                    </span>
+
+                    <h3>
+                        Création de site web
+                    </h3>
+
+                    <p>
+                        Interface web moderne et responsive.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- AFFICHE -->
+
+            <article
+                class="project reveal"
+                data-category="design"
+            >
+
+                <img
+                    src="Affiche.jpg"
+                    alt="Affiche publicitaire créée par Gildas Web & Disign"
+                    loading="lazy"
+                >
+
+                <div class="project-info">
+
+                    <span>
+                        Design graphique
+                    </span>
+
+                    <h3>
+                        Affiche publicitaire
+                    </h3>
+
+                    <p>
+                        Création visuelle pour communication digitale.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- LOGO -->
+
+            <article
+                class="project reveal"
+                data-category="logo"
+            >
+
+                <img
+                    src="logo.jpg"
+                    alt="Logo créé par Gildas Web & Disign"
+                    loading="lazy"
+                >
+
+                <div class="project-info">
+
+                    <span>
+                        Branding
+                    </span>
+
+                    <h3>
+                        Création de logo
+                    </h3>
+
+                    <p>
+                        Identité visuelle moderne et personnalisée.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- PHOTO -->
+
+            <article
+                class="project reveal"
+                data-category="web"
+            >
+
+                <img
+                    src="moi.jpg"
+                    alt="Enock Kehoumbou - Gildas Web & Disign"
+                    loading="lazy"
+                >
+
+                <div class="project-info">
+
+                    <span>
+                        Gildas Web & Disign
+                    </span>
+
+                    <h3>
+                        Le créateur
+                    </h3>
+
+                    <p>
+                        Enock Kehoumbou — créateur web & designer.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     PROCESS
+================================ -->
+
+<section>
+
+    <div class="container">
+
+        <div class="reveal">
+
+            <div class="section-label">
+                Mon processus
+            </div>
+
+            <h2 class="section-title">
+
+                Simple.
+                <span>Transparent.</span>
+                Professionnel.
+
+            </h2>
+
+        </div>
+
+
+        <div class="process-grid">
+
+
+            <div class="process reveal">
+
+                <div class="process-number">
+                    01
+                </div>
+
+                <h3>
+                    Votre besoin
+                </h3>
+
+                <p>
+                    Vous m'expliquez votre activité et ce dont
+                    vous avez besoin.
+                </p>
+
+            </div>
+
+
+            <div class="process reveal">
+
+                <div class="process-number">
+                    02
+                </div>
+
+                <h3>
+                    Proposition
+                </h3>
+
+                <p>
+                    Nous définissons ensemble le contenu,
+                    le prix et les délais.
+                </p>
+
+            </div>
+
+
+            <div class="process reveal">
+
+                <div class="process-number">
+                    03
+                </div>
+
+                <h3>
+                    Création
+                </h3>
+
+                <p>
+                    Je réalise votre projet et vous tiens
+                    informé de son évolution.
+                </p>
+
+            </div>
+
+
+            <div class="process reveal">
+
+                <div class="process-number">
+                    04
+                </div>
+
+                <h3>
+                    Livraison
+                </h3>
+
+                <p>
+                    Après validation, vous recevez votre
+                    réalisation finale.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     OFFRES
+================================ -->
+
+<section class="offers" id="offres">
+
+    <div class="container">
+
+        <div class="reveal">
+
+            <div class="section-label">
+                Mes offres
+            </div>
+
+            <h2 class="section-title">
+
+                Des prix simples,
+                <span>accessibles.</span>
+
+            </h2>
+
+            <p class="section-text">
+
+                Les tarifs sont des prix de départ.
+                Un devis précis peut être établi selon
+                la complexité de votre projet.
+
+            </p>
+
+        </div>
+
+
+        <div class="offers-grid">
+
+
+            <article class="offer reveal">
+
+                <h3>
+                    Affiche publicitaire
+                </h3>
+
+                <p class="offer-description">
+
+                    Un visuel professionnel pour présenter
+                    votre produit, événement ou service.
+
+                </p>
+
+                <div class="price">
+                    2 000 <small>FCFA+</small>
+                </div>
+
+                <ul class="features">
+
+                    <li>
+                        Design personnalisé
+                    </li>
+
+                    <li>
+                        Format réseaux sociaux
+                    </li>
+
+                    <li>
+                        Livraison numérique
+                    </li>
+
+                </ul>
+
+                <a
+                    href="#contact"
+                    class="btn btn-secondary"
+                >
+                    Commander
+                </a>
+
+            </article>
+
+
+            <article class="offer featured reveal">
+
+                <div class="badge">
+                    POPULAIRE
+                </div>
+
+                <h3>
+                    Site vitrine
+                </h3>
+
+                <p class="offer-description">
+
+                    Une présence professionnelle sur Internet
+                    pour présenter votre activité.
+
+                </p>
+
+                <div class="price">
+                    15 000 <small>FCFA+</small>
+                </div>
+
+                <ul class="features">
+
+                    <li>
+                        Design responsive
+                    </li>
+
+                    <li>
+                        Présentation de votre activité
+                    </li>
+
+                    <li>
+                        Bouton WhatsApp
+                    </li>
+
+                    <li>
+                        Mise en ligne
+                    </li>
+
+                </ul>
+
+                <a
+                    href="#contact"
+                    class="btn btn-primary"
+                >
+                    Créer mon site
+                </a>
+
+            </article>
+
+
+            <article class="offer reveal">
+
+                <h3>
+                    Logo professionnel
+                </h3>
+
+                <p class="offer-description">
+
+                    Un logo moderne pour construire
+                    l'identité de votre marque.
+
+                </p>
+
+                <div class="price">
+                    3 000 <small>FCFA+</small>
+                </div>
+
+                <ul class="features">
+
+                    <li>
+                        Concept personnalisé
+                    </li>
+
+                    <li>
+                        Design moderne
+                    </li>
+
+                    <li>
+                        Format numérique
+                    </li>
+
+                </ul>
+
+                <a
+                    href="#contact"
+                    class="btn btn-secondary"
+                >
+                    Commander
+                </a>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     TRUST
+================================ -->
+
+<section>
+
+    <div class="container trust-grid">
+
+
+        <div class="reveal">
+
+            <div class="section-label">
+                Pourquoi moi ?
+            </div>
+
+            <h2 class="section-title">
+
+                Votre projet mérite
+                <span>de l'attention.</span>
+
+            </h2>
+
+
+            <div class="trust-list">
+
+
+                <div class="trust-item">
+
+                    <div class="check">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Communication directe
+                        </h4>
+
+                        <p>
+                            Vous échangez directement avec
+                            la personne qui réalise votre projet.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="trust-item">
+
+                    <div class="check">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Design adapté au mobile
+                        </h4>
+
+                        <p>
+                            Vos clients utilisent principalement
+                            leur téléphone : le design en tient compte.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="trust-item">
+
+                    <div class="check">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Prix accessibles
+                        </h4>
+
+                        <p>
+                            Des solutions pensées pour les
+                            entrepreneurs et petites structures.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="trust-item">
+
+                    <div class="check">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Travail personnalisé
+                        </h4>
+
+                        <p>
+                            Votre projet n'est pas simplement
+                            copié sur un modèle générique.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="trust-visual reveal">
+
+            <div class="mockup">
+
+                <div class="mock-top">
+
+                    <strong>
+                        GILDAS WEB
+                    </strong>
+
+                    <div class="dots">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                    </div>
+
+                </div>
+
+                <div class="mock-line"></div>
+                <div class="mock-line small"></div>
+
+                <div class="mock-images">
+
+                    <div></div>
+                    <div></div>
+                    <div></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     FAQ
+================================ -->
+
+<section>
+
+    <div class="container">
+
+        <div class="reveal">
+
+            <div class="section-label">
+                FAQ
+            </div>
+
+            <h2 class="section-title">
+
+                Les questions
+                <span>que vous pouvez avoir.</span>
+
+            </h2>
+
+        </div>
+
+
+        <div class="faq">
+
+
+            <div class="faq-item reveal">
+
+                <button class="question">
+
+                    Comment commander ?
+
+                    <span>+</span>
+
+                </button>
+
+                <div class="answer">
+
+                    <p>
+
+                        Contactez-moi sur WhatsApp en expliquant
+                        votre besoin. Nous définissons ensemble
+                        le projet, le prix et les modalités.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item reveal">
+
+                <button class="question">
+
+                    Combien coûte un site web ?
+
+                    <span>+</span>
+
+                </button>
+
+                <div class="answer">
+
+                    <p>
+
+                        La création d'un site vitrine commence
+                        à partir de 15 000 FCFA. Le prix final
+                        dépend des fonctionnalités demandées.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item reveal">
+
+                <button class="question">
+
+                    Travaillez-vous à distance ?
+
+                    <span>+</span>
+
+                </button>
+
+                <div class="answer">
+
+                    <p>
+
+                        Oui. Les prestations numériques peuvent
+                        être réalisées entièrement à distance.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item reveal">
+
+                <button class="question">
+
+                    Puis-je demander une modification ?
+
+                    <span>+</span>
+
+                </button>
+
+                <div class="answer">
+
+                    <p>
+
+                        Oui. Les modalités de modification sont
+                        définies avant le début du projet.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     CONTACT
+================================ -->
+
+<section id="contact">
+
+    <div class="container">
+
+        <div class="contact-box reveal">
+
+            <div class="section-label">
+                Votre projet
+            </div>
+
+            <h2>
+
+                Transformons votre idée
+                en <span>quelque chose de réel.</span>
+
+            </h2>
+
+            <p>
+
+                Vous avez besoin d'un site web, d'un logo,
+                d'une affiche ou d'un visuel publicitaire ?
+                Parlons de votre projet.
+
+            </p>
+
+
+            <div class="contact-actions">
+
+                <a
+                    href="https://wa.me/22952939571"
+                    target="_blank"
+                    class="btn btn-primary"
+                >
+                    💬 Me contacter sur WhatsApp
+                </a>
+
+
+                <!-- REMPLACE CE LIEN PAR TON LIEN CHARIOW -->
+
+                <a
+                    href="https://chariow.com/"
+                    target="_blank"
+                    class="btn btn-secondary"
+                >
+                    🛒 Commander en ligne
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- ================================
+     FOOTER
+================================ -->
 
 <footer>
 
-  © 2026 Gildas Web & Design
+    <div class="container footer">
+
+        <p>
+
+            © <span id="year"></span>
+            Gildas Web & Disign.
+            Tous droits réservés.
+
+        </p>
+
+
+        <div class="footer-links">
+
+            <a href="#accueil">
+                Accueil
+            </a>
+
+            <a href="#portfolio">
+                Portfolio
+            </a>
+
+            <a href="#contact">
+                Contact
+            </a>
+
+        </div>
+
+    </div>
 
 </footer>
 
 
+<!-- WHATSAPP -->
+
+<a
+    href="https://wa.me/22952939571"
+    target="_blank"
+    class="whatsapp"
+    aria-label="Contacter Gildas Web & Disign sur WhatsApp"
+>
+    💬
+</a>
+
+
 <script>
 
-// ==========================================
-// PANIER
-// ==========================================
 
-let panier = [];
+/* ================================
+   LOADER
+================================ */
+
+window.addEventListener("load",function(){
+
+    setTimeout(function(){
+
+        document
+        .getElementById("loader")
+        .classList.add("hide");
+
+    },900);
+
+});
 
 
-// Ajouter au panier
-function ajouterAuPanier(nom, prix) {
+/* ================================
+   NAVBAR
+================================ */
 
-  const existant =
-    panier.find(
-      produit => produit.nom === nom
-    );
+const navbar =
+document.getElementById("navbar");
+
+window.addEventListener("scroll",function(){
+
+    if(window.scrollY > 50){
+
+        navbar.classList.add("scrolled");
+
+    }else{
+
+        navbar.classList.remove("scrolled");
+
+    }
+
+});
 
 
-  if (existant) {
+/* ================================
+   MOBILE MENU
+================================ */
 
-    existant.quantite++;
+const menu =
+document.getElementById("menu");
 
-  } else {
+const navLinks =
+document.getElementById("navLinks");
 
-    panier.push({
+menu.addEventListener("click",function(){
 
-      nom: nom,
+    navLinks.classList.toggle("open");
 
-      prix: Number(prix),
+});
 
-      quantite: 1
+document
+.querySelectorAll(".nav-links a")
+.forEach(function(link){
+
+    link.addEventListener("click",function(){
+
+        navLinks.classList.remove("open");
 
     });
 
-  }
+});
 
 
-  afficherPanier();
+/* ================================
+   CURSOR
+================================ */
 
-}
+const cursor =
+document.getElementById("cursor");
 
+const cursorDot =
+document.getElementById("cursorDot");
 
-// Afficher panier
-function afficherPanier() {
+document.addEventListener("mousemove",function(e){
 
-  const element =
-    document.getElementById("panier");
+    cursor.style.left =
+    e.clientX + "px";
 
+    cursor.style.top =
+    e.clientY + "px";
 
-  if (!element) return;
+    cursorDot.style.left =
+    e.clientX + "px";
 
+    cursorDot.style.top =
+    e.clientY + "px";
 
-  if (panier.length === 0) {
+});
 
-    element.innerHTML =
-      "<p>Votre panier est vide.</p>";
-
-    return;
-
-  }
-
-
-  let html = "";
-
-  let total = 0;
-
-
-  panier.forEach(
-    function(produit, index) {
-
-
-      const sousTotal =
-        produit.prix *
-        produit.quantite;
-
-
-      total += sousTotal;
-
-
-      html += `
-
-        <div class="ligne-panier">
-
-          <div>
-
-            <strong>
-              ${produit.nom}
-            </strong>
-
-            <br>
-
-            ${produit.prix.toLocaleString("fr-FR")}
-            FCFA ×
-            ${produit.quantite}
-
-          </div>
-
-
-          <button
-            type="button"
-            onclick="supprimerDuPanier(${index})">
-
-            ❌
-
-          </button>
-
-        </div>
-
-      `;
-
-    }
-  );
-
-
-  html += `
-
-    <div class="total-panier">
-
-      <strong>
-        Total :
-        ${total.toLocaleString("fr-FR")}
-        FCFA
-      </strong>
-
-    </div>
-
-  `;
-
-
-  element.innerHTML = html;
-
-}
-
-
-// Supprimer
-function supprimerDuPanier(index) {
-
-  panier.splice(index, 1);
-
-  afficherPanier();
-
-}
-
-
-// Ouvrir commande
-function ouvrirCommande() {
-
-
-  if (panier.length === 0) {
-
-    alert(
-      "🛒 Votre panier est vide."
-    );
-
-    return;
-
-  }
-
-
-  afficherResumeCommande();
-
-
-  document.getElementById(
-    "commandeModal"
-  ).style.display = "block";
-
-
-  document.body.style.overflow =
-    "hidden";
-
-}
-
-
-// Fermer commande
-function fermerCommande() {
-
-  document.getElementById(
-    "commandeModal"
-  ).style.display = "none";
-
-
-  document.body.style.overflow =
-    "auto";
-
-}
-
-
-// Résumé commande
-function afficherResumeCommande() {
-
-  const resume =
-    document.getElementById(
-      "resumePanier"
-    );
-
-
-  const totalElement =
-    document.getElementById(
-      "commandeTotal"
-    );
-
-
-  let html = "";
-
-  let total = 0;
-
-
-  panier.forEach(
-    function(produit) {
-
-
-      const sousTotal =
-        produit.prix *
-        produit.quantite;
-
-
-      total += sousTotal;
-
-
-      html += `
-
-        <div style="margin-bottom:8px;">
-
-          • ${produit.nom}
-          × ${produit.quantite}
-          —
-          ${sousTotal.toLocaleString("fr-FR")}
-          FCFA
-
-        </div>
-
-      `;
-
-    }
-  );
-
-
-  resume.innerHTML = html;
-
-
-  totalElement.textContent =
-    total.toLocaleString("fr-FR")
-    + " FCFA";
-
-}
-
-
-// ==========================================
-// ENVOI WHATSAPP
-// ==========================================
 
 document
-  .getElementById("formCommande")
-  .addEventListener(
-    "submit",
-    function(event) {
+.querySelectorAll("a,button,.project,.service,.offer")
+.forEach(function(element){
 
-
-      event.preventDefault();
-
-
-      const nom =
-        document
-          .getElementById("nomClient")
-          .value
-          .trim();
-
-
-      const telephone =
-        document
-          .getElementById("telephoneClient")
-          .value
-          .trim();
-
-
-      const projet =
-        document
-          .getElementById("projetClient")
-          .value
-          .trim();
-
-
-      const paiement =
-        document
-          .getElementById("paiementClient")
-          .value;
-
-
-      let commande = "";
-
-
-      let total = 0;
-
-
-      panier.forEach(
-        function(produit) {
-
-
-          const sousTotal =
-            produit.prix *
-            produit.quantite;
-
-
-          total += sousTotal;
-
-
-          commande +=
-            "• " +
-            produit.nom +
-            " × " +
-            produit.quantite +
-            " — " +
-            sousTotal.toLocaleString("fr-FR") +
-            " FCFA\n";
-
+    element.addEventListener(
+        "mouseenter",
+        function(){
+            cursor.classList.add("active");
         }
-      );
+    );
+
+    element.addEventListener(
+        "mouseleave",
+        function(){
+            cursor.classList.remove("active");
+        }
+    );
+
+});
 
 
-      const message =
+/* ================================
+   SCROLL REVEAL
+================================ */
 
-        "🛒 NOUVELLE COMMANDE\n\n" +
+const observer =
+new IntersectionObserver(
 
-        "👤 Client : " +
-        nom +
-        "\n" +
+    function(entries){
 
-        "📱 WhatsApp : " +
-        telephone +
-        "\n\n" +
+        entries.forEach(function(entry){
 
-        "📦 Commande :\n" +
+            if(entry.isIntersecting){
 
-        commande +
+                entry.target.classList.add("visible");
 
-        "\n💰 Total : " +
-        total.toLocaleString("fr-FR") +
-        " FCFA\n\n" +
+                observer.unobserve(entry.target);
 
-        "💳 Paiement : " +
-        paiement +
-        "\n\n" +
+            }
 
-        "📝 Projet :\n" +
-        projet;
+        });
 
+    },
 
-      const url =
-
-        "https://wa.me/2290152939571?text=" +
-
-        encodeURIComponent(message);
-
-
-      window.open(
-        url,
-        "_blank"
-      );
-
-    }
-  );
-
-
-// Fermer la fenêtre en cliquant dehors
-window.addEventListener(
-  "click",
-  function(event) {
-
-
-    const modal =
-      document.getElementById(
-        "commandeModal"
-      );
-
-
-    if (
-      event.target === modal
-    ) {
-
-      fermerCommande();
-
+    {
+        threshold:.12
     }
 
-  }
 );
 
 
-// Initialisation
-afficherPanier();
+document
+.querySelectorAll(".reveal")
+.forEach(function(element){
+
+    observer.observe(element);
+
+});
+
+
+/* ================================
+   PORTFOLIO FILTER
+================================ */
+
+const filters =
+document.querySelectorAll(".filter");
+
+const projects =
+document.querySelectorAll(".project");
+
+
+filters.forEach(function(filter){
+
+    filter.addEventListener("click",function(){
+
+        filters.forEach(function(btn){
+
+            btn.classList.remove("active");
+
+        });
+
+        filter.classList.add("active");
+
+        const category =
+        filter.dataset.filter;
+
+
+        projects.forEach(function(project){
+
+            if(
+                category === "all" ||
+                project.dataset.category === category
+            ){
+
+                project.style.display = "";
+
+                setTimeout(function(){
+
+                    project.style.opacity = "1";
+                    project.style.transform = "";
+
+                },20);
+
+            }else{
+
+                project.style.opacity = "0";
+                project.style.transform =
+                "translateY(15px)";
+
+                setTimeout(function(){
+
+                    project.style.display = "none";
+
+                },250);
+
+            }
+
+        });
+
+    });
+
+});
+
+
+/* ================================
+   FAQ
+================================ */
+
+document
+.querySelectorAll(".question")
+.forEach(function(question){
+
+    question.addEventListener("click",function(){
+
+        const item =
+        question.parentElement;
+
+        const answer =
+        item.querySelector(".answer");
+
+
+        document
+        .querySelectorAll(".faq-item")
+        .forEach(function(other){
+
+            if(other !== item){
+
+                other.classList.remove("active");
+
+                other
+                .querySelector(".answer")
+                .style.maxHeight = null;
+
+            }
+
+        });
+
+
+        item.classList.toggle("active");
+
+
+        if(item.classList.contains("active")){
+
+            answer.style.maxHeight =
+            answer.scrollHeight + "px";
+
+        }else{
+
+            answer.style.maxHeight = null;
+
+        }
+
+    });
+
+});
+
+
+/* ================================
+   YEAR
+================================ */
+
+document
+.getElementById("year")
+.textContent =
+new Date().getFullYear();
+
+
+/* ================================
+   CARD TILT
+================================ */
+
+document
+.querySelectorAll(".service,.offer")
+.forEach(function(card){
+
+    card.addEventListener("mousemove",function(e){
+
+        if(window.innerWidth < 800){
+            return;
+        }
+
+        const rect =
+        card.getBoundingClientRect();
+
+        const x =
+        e.clientX - rect.left;
+
+        const y =
+        e.clientY - rect.top;
+
+        const rotateY =
+        ((x / rect.width)-.5)*5;
+
+        const rotateX =
+        ((y / rect.height)-.5)*-5;
+
+        card.style.transform =
+        "perspective(800px) rotateX(" +
+        rotateX +
+        "deg) rotateY(" +
+        rotateY +
+        "deg) translateY(-6px)";
+
+    });
+
+
+    card.addEventListener("mouseleave",function(){
+
+        card.style.transform = "";
+
+    });
+
+});
+
+
+/* ================================
+   ORB PARALLAX
+================================ */
+
+window.addEventListener("mousemove",function(e){
+
+    if(window.innerWidth < 800){
+        return;
+    }
+
+    const x =
+    (e.clientX / window.innerWidth - .5)*12;
+
+    const y =
+    (e.clientY / window.innerHeight - .5)*12;
+
+
+    document
+    .querySelector(".orb1")
+    .style.transform =
+    "translate(" + x + "px," + y + "px)";
+
+
+    document
+    .querySelector(".orb2")
+    .style.transform =
+    "translate(" + (-x) + "px," + (-y) + "px)";
+
+});
+
+
+/* ================================
+   CONSOLE
+================================ */
+
+console.log(
+    "Gildas Web & Disign — Site chargé avec succès."
+);
+
 
 </script>
 
-
 </body>
-
 </html>
-<style>/* =========================================
-   🎨 DESIGN PREMIUM - GILDAS WEB & DESIGN
-   ========================================= */
-
-:root {
-  --primary: #6c5ce7;
-  --secondary: #00b894;
-  --accent: #fdcb6e;
-  --dark: #17202a;
-  --light: #f8f9ff;
-  --white: #ffffff;
-  --text: #343a40;
-  --muted: #6c757d;
-  --shadow: 0 12px 35px rgba(0, 0, 0, 0.10);
-  --radius: 20px;
-}
-
-
-/* 🌈 PAGE */
-
-body {
-  background:
-    linear-gradient(
-      135deg,
-      #f8f9ff 0%,
-      #eef7ff 50%,
-      #fff8ed 100%
-    );
-
-  color: var(--text);
-}
-
-
-/* 🧭 MENU */
-
-header {
-  background:
-    linear-gradient(
-      135deg,
-      #17132f,
-      #302b63,
-      #6c5ce7
-    );
-
-  box-shadow:
-    0 5px 25px rgba(0,0,0,0.18);
-}
-
-nav a {
-  padding: 8px 12px;
-  border-radius: 8px;
-  transition: 0.3s;
-}
-
-nav a:hover {
-  background: rgba(255,255,255,0.18);
-  transform: translateY(-2px);
-}
-
-
-/* 🏠 ACCUEIL */
-
-.hero {
-  background:
-    radial-gradient(
-      circle at top right,
-      #dfe6ff,
-      transparent 45%
-    ),
-    linear-gradient(
-      135deg,
-      #ffffff,
-      #f2f0ff
-    );
-
-  border-bottom:
-    1px solid rgba(108,92,231,0.15);
-}
-
-.hero h1 {
-  background:
-    linear-gradient(
-      90deg,
-      #6c5ce7,
-      #00b894
-    );
-
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-
-/* 🔘 BOUTONS */
-
-.btn {
-  background:
-    linear-gradient(
-      135deg,
-      #6c5ce7,
-      #4834d4
-    );
-
-  box-shadow:
-    0 8px 20px rgba(108,92,231,0.25);
-
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-.btn:hover {
-  transform: translateY(-3px);
-
-  box-shadow:
-    0 12px 28px rgba(108,92,231,0.35);
-}
-
-.btn:active {
-  transform: scale(0.97);
-}
-
-
-/* 🛍️ TITRES */
-
-.title h2 {
-  color: #2d3436;
-}
-
-.title h2::after {
-  content: "";
-  display: block;
-
-  width: 65px;
-  height: 4px;
-
-  margin: 12px auto 0;
-
-  border-radius: 20px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #6c5ce7,
-      #00b894
-    );
-}
-
-
-/* 🛒 CARTES PRODUITS */
-
-.card {
-  position: relative;
-
-  overflow: hidden;
-
-  border:
-    1px solid rgba(108,92,231,0.08);
-
-  background:
-    linear-gradient(
-      145deg,
-      #ffffff,
-      #fbfbff
-    );
-
-  box-shadow:
-    0 10px 30px rgba(31,41,55,0.08);
-
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    border-color 0.3s ease;
-}
-
-.card::before {
-  content: "";
-
-  position: absolute;
-
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 5px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #6c5ce7,
-      #00b894,
-      #fdcb6e
-    );
-}
-
-.card:hover {
-  transform:
-    translateY(-8px);
-
-  box-shadow:
-    0 18px 45px rgba(31,41,55,0.14);
-
-  border-color:
-    rgba(108,92,231,0.25);
-}
-
-
-/* 🖼️ IMAGES */
-
-.card img {
-  border:
-    3px solid #f0edff;
-
-  box-shadow:
-    0 8px 20px rgba(108,92,231,0.10);
-
-  transition:
-    transform 0.3s ease;
-}
-
-.card:hover img {
-  transform:
-    scale(1.03);
-}
-
-
-/* ✨ DESIGN GRAPHIQUE */
-
-.icon {
-  width: 90px;
-  height: 90px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50%;
-
-  background:
-    linear-gradient(
-      135deg,
-      #eeeaff,
-      #e1fff8
-    );
-
-  box-shadow:
-    0 10px 25px rgba(108,92,231,0.12);
-}
-
-
-/* 💰 PRIX */
-
-.price {
-  color: #6c5ce7;
-
-  background:
-    #f0edff;
-
-  padding:
-    7px 14px;
-
-  border-radius:
-    50px;
-
-  display:
-    inline-block;
-}
-
-
-/* 🛒 PANIER */
-
-#panier-section {
-  background:
-    linear-gradient(
-      135deg,
-      #f0edff,
-      #e8fff9
-    );
-}
-
-.panier-container {
-  background:
-    rgba(255,255,255,0.90);
-
-  border:
-    1px solid rgba(108,92,231,0.12);
-
-  box-shadow:
-    var(--shadow);
-}
-
-
-/* 📦 LIGNES DU PANIER */
-
-.ligne-panier {
-  border-left:
-    5px solid #6c5ce7;
-
-  box-shadow:
-    0 4px 15px rgba(0,0,0,0.05);
-
-  transition:
-    transform 0.2s ease;
-}
-
-.ligne-panier:hover {
-  transform:
-    translateX(4px);
-}
-
-
-/* 💰 TOTAL */
-
-.total-panier {
-  color:
-    #302b63;
-
-  background:
-    linear-gradient(
-      135deg,
-      #f0edff,
-      #e7fff9
-    );
-
-  border-radius:
-    12px;
-
-  padding:
-    15px;
-}
-
-
-/* 🛍️ FINALISER */
-
-.finaliser {
-  background:
-    linear-gradient(
-      135deg,
-      #00b894,
-      #00a383
-    );
-
-  box-shadow:
-    0 10px 25px rgba(0,184,148,0.25);
-}
-
-.finaliser:hover {
-  box-shadow:
-    0 14px 30px rgba(0,184,148,0.35);
-}
-
-
-/* 💳 PAIEMENT */
-
-#paiement {
-  background:
-    linear-gradient(
-      135deg,
-      #ffffff,
-      #f4faff
-    );
-}
-
-.paiement-card {
-  border-left:
-    6px solid #00b894;
-
-  background:
-    linear-gradient(
-      135deg,
-      #edfff9,
-      #ffffff
-    );
-
-  box-shadow:
-    var(--shadow);
-}
-
-.paiement-info {
-  border-left:
-    6px solid #fdcb6e;
-
-  background:
-    linear-gradient(
-      135deg,
-      #fff9e8,
-      #ffffff
-    );
-}
-
-
-/* 🧾 FORMULAIRE */
-
-.commande-box {
-  box-shadow:
-    0 25px 70px rgba(0,0,0,0.25);
-
-  border-top:
-    6px solid #6c5ce7;
-}
-
-.commande-box input:focus,
-.commande-box textarea:focus,
-.commande-box select:focus {
-  outline:
-    none;
-
-  border-color:
-    #6c5ce7;
-
-  box-shadow:
-    0 0 0 4px rgba(108,92,231,0.12);
-}
-
-
-/* 📱 CONTACT */
-
-#contact {
-  background:
-    linear-gradient(
-      135deg,
-      #302b63,
-      #6c5ce7
-    );
-
-  color:
-    white;
-}
-
-#contact .title h2,
-#contact .title p {
-  color:
-    white;
-}
-
-
-/* 🦶 FOOTER */
-
-footer {
-  background:
-    linear-gradient(
-      135deg,
-      #111827,
-      #302b63
-    );
-
-  border-top:
-    4px solid #6c5ce7;
-}
-
-
-/* 📱 MOBILE */
-
-@media (max-width: 700px) {
-
-  .card {
-    border-radius:
-      16px;
-  }
-
-  .hero {
-    padding:
-      65px 18px;
-  }
-
-  section {
-    padding:
-      55px 15px;
-  }
-
-  .title h2 {
-    font-size:
-      27px;
-  }
-
-}</style>
